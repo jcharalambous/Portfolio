@@ -7,3 +7,11 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## Project layout
+
+- `src/app/` holds routes and Next.js special files only.
+- `src/components/` holds shared UI. `src/components/ui/` is for primitives such as `Button`.
+- `src/lib/` holds non-UI code. `site.ts` is site config, `projects.ts` is the project data and helpers.
+- Import with the `@/` alias, for example `@/components/ui/button`.
+- Tests sit next to the code as `*.test.ts` or `*.test.tsx` and run with `npm test` (Vitest).

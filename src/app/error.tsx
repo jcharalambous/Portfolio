@@ -1,6 +1,7 @@
 "use client"; // Error boundaries must be Client Components
 
 import { useEffect } from "react";
+import { Button } from "@/components/ui/button";
 
 export default function Error({
   error,
@@ -28,13 +29,7 @@ export default function Error({
           Reference: {error.digest}
         </p>
       )}
-      <button
-        type="button"
-        onClick={() => retry()}
-        className="flex h-12 items-center justify-center rounded-full bg-foreground px-5 font-medium text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc]"
-      >
-        Try again
-      </button>
+      <Button onClick={() => retry()}>Try again</Button>
     </div>
   );
 }

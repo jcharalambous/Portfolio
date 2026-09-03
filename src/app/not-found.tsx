@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { ButtonLink } from "@/components/ui/button";
 
 export default function NotFound() {
   return (
@@ -10,12 +10,7 @@ export default function NotFound() {
       <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
         The page you are looking for does not exist or has been moved.
       </p>
-      <Link
-        href="/"
-        className="flex h-12 items-center justify-center rounded-full bg-foreground px-5 font-medium text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc]"
-      >
-        Go home
-      </Link>
+      <ButtonLink href="/">Go home</ButtonLink>
     </div>
   );
 }

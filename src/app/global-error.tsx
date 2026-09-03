@@ -1,5 +1,6 @@
 "use client"; // Error boundaries must be Client Components
 
+import { Button } from "@/components/ui/button";
 import "./globals.css";
 
 // Replaces the root layout when it throws, so it must render <html> and <body>.
@@ -26,13 +27,7 @@ export default function GlobalError({
               Reference: {error.digest}
             </p>
           )}
-          <button
-            type="button"
-            onClick={() => retry()}
-            className="flex h-12 items-center justify-center rounded-full bg-foreground px-5 font-medium text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc]"
-          >
-            Try again
-          </button>
+          <Button onClick={() => retry()}>Try again</Button>
         </div>
       </body>
     </html>
