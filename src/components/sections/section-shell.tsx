@@ -14,11 +14,14 @@ export function SectionShell({ id, heading, intro, children }: Props) {
   const { label } = sections.find((section) => section.id === id)!;
 
   return (
-    <section id={id} className="flex min-h-screen flex-col justify-center">
-      <header>
-        <p className="text-ink-muted">{label}</p>
-        <h2>{heading ?? label}</h2>
-        {intro && <p>{intro}</p>}
+    <section
+      id={id}
+      className="flex min-h-screen flex-col justify-center border-t border-line-soft px-(--gutter) py-24"
+    >
+      <header className="mb-12">
+        <p className="mb-2.5 text-kicker text-ink-muted">{label}</p>
+        <h2 className="max-w-[18ch] text-balance text-heading">{heading ?? label}</h2>
+        {intro && <p className="mt-[18px] max-w-[50ch] text-lede text-ink-muted">{intro}</p>}
       </header>
       {children}
     </section>

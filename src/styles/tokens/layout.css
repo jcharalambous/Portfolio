@@ -1,0 +1,20 @@
+@theme {
+  /* The rail needs 220px beside the centred 1024px column; below this it collapses to 64px. */
+  --breakpoint-wide: 91.25rem;
+  --spacing-rail: 220px;
+  --spacing-rail-compact: 64px;
+}
+
+/* Left and right page gutter: 22px past the rail, or the centred 1024px column, whichever is wider. */
+:root {
+  --gutter: max(
+    calc(var(--spacing-rail-compact) + 22px),
+    calc((100vw - 1024px) / 2 + 22px)
+  );
+  @variant wide {
+    --gutter: max(
+      calc(var(--spacing-rail) + 22px),
+      calc((100vw - 1024px) / 2 + 22px)
+    );
+  }
+}
