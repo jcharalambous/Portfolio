@@ -13,7 +13,7 @@ export type Fact = {
 export const aboutContent = {
   heading: "Who's behind it.",
   terminal: {
-    title: "john@charalambous.network — zsh",
+    title: "john — zsh",
     script: [
       { kind: "command", text: "whoami" },
       { kind: "output", text: "john charalambous", bright: true },

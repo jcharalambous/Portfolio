@@ -1,4 +1,5 @@
 import { ButtonLink } from "@/components/ui/button";
+import { EmailLink } from "@/components/ui/email-link";
 import { heroContent } from "@/content/hero";
 import { siteConfig } from "@/lib/site";
 
@@ -54,12 +55,7 @@ export function HeroCopy() {
           </li>
         ))}
         <li>
-          <a
-            href={`mailto:${siteConfig.email}`}
-            className="text-ink-muted transition-colors duration-200 hover:text-ink"
-          >
-            Email
-          </a>
+          <EmailLink className="text-ink-muted transition-colors duration-200 hover:text-ink">Email</EmailLink>
         </li>
       </ul>
     </div>

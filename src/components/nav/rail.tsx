@@ -8,6 +8,8 @@ import { siteConfig } from "@/lib/site";
 import { RailItem, type RailItemState } from "./rail-item";
 import { RailProgress } from "./rail-progress";
 import { useAddressSync } from "./use-address-sync";
+import { useAnchorLanding } from "./use-anchor-landing";
+import { useHasScrolled } from "./use-has-scrolled";
 import { useIdle } from "./use-idle";
 import { useSectionPosition } from "./use-section-position";
 
@@ -26,16 +28,17 @@ function stateFor(index: number, active: number): RailItemState {
  */
 export function Rail() {
   const [active, setActive] = useState(0);
-  /** Unset until the page has been measured once, so the address is never rewritten from the server default. */
-  const [measured, setMeasured] = useState(false);
   const listRef = useRef<HTMLOListElement>(null);
   const fillRef = useRef<HTMLDivElement>(null);
   const idle = useIdle({ initialDelay: 3000, delay: 2200 });
-  useAddressSync(measured ? (active === 0 ? null : sections[active].id) : undefined);
+  // The address only starts following once the reader scrolls. Before that the
+  // browser owns it: a link to /#projects must still land on Projects.
+  useAnchorLanding(ids);
+  const hasScrolled = useHasScrolled();
+  useAddressSync(hasScrolled ? (active === 0 ? null : sections[active].id) : undefined);
 
   useSectionPosition(ids, ({ index, progress }) => {
     setActive(index);
-    setMeasured(true);
     const list = listRef.current;
     const fill = fillRef.current;
     if (!list || !fill) return;
