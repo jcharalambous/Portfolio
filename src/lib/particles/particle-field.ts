@@ -14,6 +14,9 @@ export const PHYSICS = {
   pointerLag: 0.2,
 };
 
+/** Number of base shades a particle can have. */
+export const TONES = 3;
+
 export function createParticles(
   points: Point[],
   width: number,
@@ -23,8 +26,8 @@ export function createParticles(
 ): Particle[] {
   return points.map((p) => {
     const size = 1.1 + random() * 0.7;
-    const lightness = 88 + random() * 8;
-    if (settled) return { tx: p.x, ty: p.y, x: p.x, y: p.y, vx: 0, vy: 0, size, lightness };
+    const tone = Math.min(TONES - 1, Math.floor(random() * TONES));
+    if (settled) return { tx: p.x, ty: p.y, x: p.x, y: p.y, vx: 0, vy: 0, size, tone };
     // Start on a ring well outside the viewport so the headline flies in.
     const angle = random() * Math.PI * 2;
     const distance = Math.max(width, height) * (0.5 + random() * 0.6);
@@ -36,14 +39,18 @@ export function createParticles(
       vx: 0,
       vy: 0,
       size,
-      lightness,
+      tone,
     };
   });
 }
 
-/** Advance every particle one frame. Mutates in place; no DOM. */
-export function stepParticles(particles: Particle[], pointer: Point, burst: number): void {
+/**
+ * Advance every particle one frame. Mutates in place; no DOM.
+ * Returns the fastest particle's speed, so the caller knows when the field is at rest.
+ */
+export function stepParticles(particles: Particle[], pointer: Point, burst: number): number {
   const radius2 = PHYSICS.radius * PHYSICS.radius;
+  let fastest = 0;
   for (const p of particles) {
     let ax = (p.tx - p.x) * PHYSICS.pull;
     let ay = (p.ty - p.y) * PHYSICS.pull;
@@ -60,5 +67,8 @@ export function stepParticles(particles: Particle[], pointer: Point, burst: numb
     p.vy = (p.vy + ay) * PHYSICS.damping;
     p.x += p.vx;
     p.y += p.vy;
+    const speed = Math.abs(p.vx) + Math.abs(p.vy);
+    if (speed > fastest) fastest = speed;
   }
+  return fastest;
 }

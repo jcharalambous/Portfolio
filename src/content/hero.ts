@@ -24,6 +24,8 @@ export const heroContent = {
   /** Self-hosted from public/spline. See the README there for provenance. */
   scene: {
     src: "/spline/nexbot.splinecode",
+    /** A still of the same scene, shown instead of the live one on small screens. */
+    poster: "/spline/nexbot-poster.png",
     credit: {
       model: "NEXBOT",
       author: "ahmedkhaledemara0909",

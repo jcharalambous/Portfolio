@@ -31,3 +31,20 @@ test("on a phone the rail is a bar along the bottom", async ({ page, isMobile })
   expect(box.width).toBe(viewport.width);
   await expect(page.getByText("How I got here")).toBeHidden();
 });
+
+test("the address follows the reader, and clears at the top", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator(current)).toHaveAttribute("href", "#top");
+
+  await page.evaluate(() => {
+    const work = document.getElementById("work")!;
+    window.scrollTo({ top: work.offsetTop + 10, behavior: "instant" });
+  });
+  await expect(page).toHaveURL(/#work$/);
+
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+  await expect(page).not.toHaveURL(/#/);
+
+  await page.reload();
+  await expect(page.locator(current)).toHaveAttribute("href", "#top");
+});

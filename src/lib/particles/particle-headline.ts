@@ -10,9 +10,15 @@ export type ParticleHeadlineOptions = {
   lines: string[];
   /** Skip the fly-in and start at rest (reduced motion). */
   settleImmediately?: boolean;
+  /** Called once, the first time the headline has fully formed. */
+  onSettled?: () => void;
 };
 
 const OFFSCREEN: Point = { x: -9999, y: -9999 };
+/** Below this speed a particle counts as at rest. */
+const REST_SPEED = 0.02;
+/** Consecutive resting frames before the loop stops. */
+const REST_FRAMES = 30;
 
 /**
  * Wire the particle headline to the DOM: sizing, pointer input, the frame
@@ -23,6 +29,7 @@ export function mountParticleHeadline({
   host,
   lines,
   settleImmediately = false,
+  onSettled,
 }: ParticleHeadlineOptions): () => void {
   const ctx = canvas.getContext("2d");
   if (!ctx) return () => {};
@@ -38,6 +45,14 @@ export function mountParticleHeadline({
   let frameId = 0;
   let running = false;
   let disposed = false;
+  let stillFrames = 0;
+  let settled = false;
+
+  function reportSettled() {
+    if (settled) return;
+    settled = true;
+    onSettled?.();
+  }
 
   /** Lay the headline out again for the host's current size. A no-op if the size is unchanged. */
   function build() {
@@ -53,26 +68,40 @@ export function mountParticleHeadline({
     canvas.style.width = `${width}px`;
     canvas.style.height = `${height}px`;
     ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
+    // Phones move fewer dots: sample every third pixel instead of every second.
+    const step = width > 820 ? 2 : 3;
     particles = createParticles(
-      sampleTextPoints({ width, height, gutter, lines, fontFamily }),
+      sampleTextPoints({ width, height, gutter, lines, fontFamily, step }),
       width,
       height,
       settleImmediately,
     );
+    if (settleImmediately) reportSettled();
+    start();
   }
 
   function frame() {
     pointer.x += (target.x - pointer.x) * PHYSICS.pointerLag;
     pointer.y += (target.y - pointer.y) * PHYSICS.pointerLag;
     burst *= PHYSICS.burstDecay;
-    stepParticles(particles, pointer, burst);
+    const fastest = stepParticles(particles, pointer, burst);
     drawParticles(ctx!, particles, width, height);
+
+    // Once the field has settled and nothing is pushing it, stop drawing until something changes.
+    const pointerAway = target.x === OFFSCREEN.x;
+    stillFrames = fastest < REST_SPEED && pointerAway ? stillFrames + 1 : 0;
+    if (stillFrames > REST_FRAMES) {
+      reportSettled();
+      stop();
+      return;
+    }
     frameId = requestAnimationFrame(frame);
   }
 
   function start() {
     if (running || disposed) return;
     running = true;
+    stillFrames = 0;
     frameId = requestAnimationFrame(frame);
   }
 
@@ -85,6 +114,7 @@ export function mountParticleHeadline({
     const r = host.getBoundingClientRect();
     target.x = e.clientX - r.left;
     target.y = e.clientY - r.top;
+    start();
   };
   const onLeave = () => {
     target.x = OFFSCREEN.x;
@@ -92,6 +122,7 @@ export function mountParticleHeadline({
   };
   const onDown = () => {
     burst = 1;
+    start();
   };
   host.addEventListener("pointermove", onMove, { passive: true });
   host.addEventListener("pointerleave", onLeave);

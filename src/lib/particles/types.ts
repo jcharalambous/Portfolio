@@ -10,6 +10,6 @@ export type Particle = {
   vy: number;
   /** Square size in CSS pixels. */
   size: number;
-  /** Base lightness, so the field isn't flat. */
-  lightness: number;
+  /** One of a few base shades, so the field isn't flat. */
+  tone: number;
 };
