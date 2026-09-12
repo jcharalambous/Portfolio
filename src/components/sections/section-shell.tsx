@@ -6,17 +6,24 @@ type Props = {
   /** Falls back to the section's label from the list. */
   heading?: string;
   intro?: string;
+  /** Where the content sits in the screen. Most sections centre; a long one starts at the top. */
+  align?: "center" | "start";
   children?: ReactNode;
 };
 
+const alignment = {
+  center: "justify-center py-24",
+  start: "justify-start pt-[140px] pb-10 max-stack:pb-20",
+};
+
 /** The frame every section except the hero sits in: anchor id, kicker, heading, optional intro. */
-export function SectionShell({ id, heading, intro, children }: Props) {
+export function SectionShell({ id, heading, intro, align = "center", children }: Props) {
   const { label } = sections.find((section) => section.id === id)!;
 
   return (
     <section
       id={id}
-      className="flex min-h-svh flex-col justify-center border-t border-line-soft px-(--gutter) py-24"
+      className={`flex min-h-svh flex-col border-t border-line-soft px-(--gutter) ${alignment[align]}`}
     >
       <header className="mb-12">
         <p className="mb-2.5 text-kicker text-ink-muted">{label}</p>

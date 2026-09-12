@@ -12,6 +12,6 @@ test("shows the role, the two calls to action, and every contact link", () => {
     expect(screen.getByRole("link", { name: link.label }).getAttribute("href")).toBe(link.href);
   }
   expect(screen.getByRole("link", { name: "Email" }).getAttribute("href")).toBe(
-    `mailto:${siteConfig.email}`,
+    "mailto:business@charalambous.network",
   );
 });

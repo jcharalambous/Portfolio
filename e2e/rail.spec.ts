@@ -48,3 +48,9 @@ test("the address follows the reader, and clears at the top", async ({ page }) =
   await page.reload();
   await expect(page.locator(current)).toHaveAttribute("href", "#top");
 });
+
+test("a link to a section still lands on it", async ({ page }) => {
+  await page.goto("/#projects");
+  await expect(page.locator(current)).toHaveAttribute("href", "#projects");
+  await expect(page).toHaveURL(/#projects$/);
+});
