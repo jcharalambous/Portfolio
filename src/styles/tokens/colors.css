@@ -10,4 +10,13 @@
   --color-accent-hover: #0077ed;
   --color-line: rgba(255, 255, 255, 0.12);
   --color-line-soft: rgba(255, 255, 255, 0.06);
+
+  /* Signals. */
+  --color-live: #30d158;
+  --color-prompt: #5ac8fa;
+
+  /* macOS window buttons, for the terminal. */
+  --color-traffic-red: #ff5f57;
+  --color-traffic-amber: #febc2e;
+  --color-traffic-green: #28c840;
 }

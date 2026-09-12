@@ -16,6 +16,7 @@ export const siteConfig = {
   description:
     "Software engineer. I build things for the web, and the infrastructure that keeps them running.",
   email: "business@charalambous.network",
+  timeZone: "Europe/London",
   url: resolveSiteUrl(),
   links: [
     { label: "GitHub", href: "https://github.com/jcharalambous" },
