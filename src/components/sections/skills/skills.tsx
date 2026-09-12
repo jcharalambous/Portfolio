@@ -3,7 +3,7 @@ import { skillsContent } from "@/content/skills";
 import { SectionShell } from "../section-shell";
 import { SkillGroup } from "./skill-group";
 
-const COLUMNS = 3;
+const stagger = [0, 60, 120] as const;
 
 export function Skills() {
   const { heading, groups } = skillsContent;
@@ -12,7 +12,7 @@ export function Skills() {
     <SectionShell id="skills" heading={heading}>
       <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
         {groups.map((group, index) => (
-          <Reveal key={group.title} delay={(index % COLUMNS) * 60} threshold={0.15}>
+          <Reveal key={group.title} delay={stagger[index % stagger.length]} threshold={0.15}>
             <SkillGroup group={group} />
           </Reveal>
         ))}
