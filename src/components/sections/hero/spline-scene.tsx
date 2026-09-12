@@ -26,7 +26,7 @@ export function SplineScene({ src, className }: Props) {
   return (
     <div
       aria-hidden="true"
-      className={`after:pointer-events-none after:absolute after:inset-y-0 after:left-0 after:w-[22%] after:bg-linear-to-r after:from-page after:to-transparent after:content-[''] max-stack:after:inset-x-0 max-stack:after:top-0 max-stack:after:h-[30%] max-stack:after:w-auto max-stack:after:bg-linear-to-b ${className ?? ""}`}
+      className={`after:pointer-events-none after:absolute after:inset-y-0 after:left-0 after:w-[22%] after:bg-linear-to-r after:from-page after:to-transparent after:content-[''] max-stack:after:inset-x-0 max-stack:after:top-0 max-stack:after:h-[30%] max-stack:after:w-auto max-stack:after:bg-linear-to-b max-stack:before:pointer-events-none max-stack:before:absolute max-stack:before:inset-x-0 max-stack:before:bottom-16 max-stack:before:z-10 max-stack:before:h-[40%] max-stack:before:bg-linear-to-t max-stack:before:from-page/90 max-stack:before:to-transparent max-stack:before:content-[''] ${className ?? ""}`}
     >
       <spline-viewer
         url={src}

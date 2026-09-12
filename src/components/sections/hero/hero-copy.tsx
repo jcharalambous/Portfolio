@@ -2,8 +2,6 @@ import { ButtonLink } from "@/components/ui/button";
 import { heroContent } from "@/content/hero";
 import { siteConfig } from "@/lib/site";
 
-const edge = "clamp(28px,7vh,72px)";
-
 // Each block fades in on load, in sequence. Under reduced motion it is a short plain fade.
 const fadeIn = "opacity-0 animate-fade-in motion-reduce:[animation-duration:400ms] motion-reduce:[animation-delay:0ms]";
 const riseIn = "opacity-0 animate-rise-in motion-reduce:animate-fade-in motion-reduce:[animation-duration:400ms] motion-reduce:[animation-delay:0ms]";
@@ -13,18 +11,18 @@ export function HeroCopy() {
   const { kicker, supporting, primaryCta, secondaryCta } = heroContent;
 
   return (
-    <div className="pointer-events-none absolute inset-0 z-20 [&_a]:pointer-events-auto [&_button]:pointer-events-auto">
-      <p
-        className={`absolute left-(--gutter) text-lede leading-[1.19] font-semibold text-ink-muted ${fadeIn} [animation-delay:300ms]`}
-        style={{ top: edge }}
-      >
-        {kicker}
-      </p>
+    <div className="pointer-events-none absolute inset-0 z-30 [&_a]:pointer-events-auto [&_button]:pointer-events-auto">
+      <div
+        className={`absolute top-[clamp(28px,7vh,72px)] left-(--gutter) ${fadeIn} [animation-delay:300ms]`}>
+        {/* On small screens the rail has no room for the name, so the hero carries it. */}
+        <p className="text-sm font-semibold tracking-tight text-ink stack:hidden">{siteConfig.name}</p>
+        <p className="text-lede leading-[1.19] font-semibold text-ink-muted max-stack:text-[17px]">
+          {kicker}
+        </p>
+      </div>
 
       <div
-        className={`absolute left-(--gutter) max-w-[480px] max-stack:top-[58%] max-stack:bottom-auto max-stack:max-w-[calc(100%-44px)] ${riseIn} [animation-delay:1500ms]`}
-        style={{ bottom: edge }}
-      >
+        className={`absolute left-(--gutter) right-(--gutter) max-stack:bottom-32 stack:right-auto stack:bottom-[clamp(28px,7vh,72px)] stack:max-w-[480px] ${riseIn} [animation-delay:1500ms]`}>
         <p className="mb-7 text-lede text-ink-muted max-stack:text-[17px]">
           {supporting.before}
           <strong className="font-semibold text-ink">{supporting.company}</strong>
@@ -42,9 +40,7 @@ export function HeroCopy() {
       </div>
 
       <ul
-        className={`absolute right-(--gutter) flex gap-6 text-sm tracking-[-0.01em] max-stack:hidden ${fadeIn} [animation-delay:1800ms]`}
-        style={{ bottom: edge }}
-      >
+        className={`absolute right-(--gutter) bottom-[clamp(28px,7vh,72px)] flex gap-6 text-sm tracking-[-0.01em] max-stack:hidden ${fadeIn} [animation-delay:1800ms]`}>
         {siteConfig.links.map((link) => (
           <li key={link.href}>
             <a

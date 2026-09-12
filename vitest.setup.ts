@@ -16,3 +16,9 @@ window.matchMedia = vi.fn().mockImplementation((query: string) => ({
   dispatchEvent: vi.fn(),
 }));
 HTMLCanvasElement.prototype.getContext = vi.fn().mockReturnValue(null);
+class ResizeObserverStub {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+window.ResizeObserver = ResizeObserverStub as unknown as typeof ResizeObserver;

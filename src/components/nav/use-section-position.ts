@@ -36,10 +36,14 @@ export function useSectionPosition(
 
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", schedule);
+    // Sections change height as fonts, images and viewport units settle after load.
+    const resize = new ResizeObserver(schedule);
+    elements.forEach((el) => resize.observe(el));
     measure();
 
     return () => {
       cancelAnimationFrame(frame);
+      resize.disconnect();
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
     };

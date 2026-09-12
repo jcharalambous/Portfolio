@@ -13,12 +13,17 @@ const STACK_BREAKPOINT = 820;
 export const LINE_HEIGHT = 1.02;
 export const TRACKING = -0.018;
 
+/** Gap kept between the headline and the scene that starts at the middle of the screen. */
+const SCENE_GAP = 24;
+
 export function headlineBox(width: number, height: number, gutter: number): HeadlineBox {
   const wide = width > STACK_BREAKPOINT;
+  // Wide: the scene owns the right half, so the headline fits between the gutter and the middle.
+  const besideScene = width / 2 - gutter - SCENE_GAP;
   return {
     left: gutter,
     top: wide ? TOP_OFFSET + height * 0.19 : TOP_OFFSET + height * 0.12,
-    maxWidth: wide ? Math.min(width * 0.5, 620) - gutter * 0.2 : width - gutter * 2,
+    maxWidth: wide ? Math.min(besideScene, 620) : width - gutter * 2,
     maxHeight: wide ? height * 0.46 : height * 0.34,
   };
 }

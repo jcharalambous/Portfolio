@@ -1,11 +1,15 @@
 import { expect, test } from "vitest";
 import { fitFontSize, headlineBox } from "./fit-headline";
 
-test("wide viewports keep the headline in the left half", () => {
-  const box = headlineBox(1440, 900, 266);
+test("wide viewports keep the headline between the gutter and the scene", () => {
+  const box = headlineBox(1512, 866, 266);
   expect(box.left).toBe(266);
-  expect(box.maxWidth).toBeLessThanOrEqual(620);
-  expect(box.maxHeight).toBe(900 * 0.46);
+  expect(box.left + box.maxWidth).toBeLessThan(1512 / 2);
+  expect(box.maxHeight).toBe(866 * 0.46);
+});
+
+test("very wide viewports cap the headline width", () => {
+  expect(headlineBox(3000, 1200, 1010).maxWidth).toBe(466);
 });
 
 test("narrow viewports use the full width minus the gutter", () => {

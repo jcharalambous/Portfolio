@@ -18,7 +18,11 @@ function stateFor(index: number, active: number): RailItemState {
   return "upcoming";
 }
 
-/** Fixed left-hand nav: a node per section on a line that fills as the reader scrolls. */
+/**
+ * Section nav. On small screens it is a bar of dots along the bottom. From the
+ * `stack` breakpoint up it is a fixed rail on the left: a node per section on
+ * a line that fills as the reader scrolls.
+ */
 export function Rail() {
   const [active, setActive] = useState(0);
   const listRef = useRef<HTMLOListElement>(null);
@@ -37,17 +41,17 @@ export function Rail() {
     <nav
       aria-label="Sections"
       data-idle={idle || undefined}
-      className="pointer-events-none fixed inset-y-0 left-0 z-50 flex w-rail-compact flex-col justify-center pl-[26px] transition-opacity duration-500 ease-out hover:opacity-100 hover:duration-200 focus-within:opacity-100 data-idle:opacity-40 wide:w-rail wide:pl-10"
+      className="pointer-events-none fixed z-50 flex transition-opacity duration-500 ease-out hover:opacity-100 hover:duration-200 focus-within:opacity-100 data-idle:opacity-40 max-stack:inset-x-0 max-stack:bottom-0 max-stack:h-14 max-stack:items-center max-stack:justify-center max-stack:border-t max-stack:border-line-soft max-stack:bg-page/80 max-stack:backdrop-blur-md stack:inset-y-0 stack:left-0 stack:w-rail-compact stack:flex-col stack:justify-center stack:pl-[26px] wide:w-rail wide:pl-10"
     >
       <a
         href="#top"
-        className="pointer-events-auto absolute top-6 left-[26px] text-xs font-semibold tracking-tight text-ink wide:left-10"
+        className="pointer-events-auto absolute top-6 left-[26px] text-xs font-semibold tracking-tight whitespace-nowrap text-ink max-stack:hidden wide:left-10"
       >
         {siteConfig.name}
       </a>
-      <div className="relative pl-[26px]">
+      <div className="relative stack:pl-[26px]">
         <RailProgress ref={fillRef} />
-        <ol ref={listRef} className="flex flex-col gap-[22px]">
+        <ol ref={listRef} className="flex max-stack:flex-row stack:flex-col stack:gap-[22px]">
           {sections.map((section, index) => (
             <RailItem
               key={section.id}

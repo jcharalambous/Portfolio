@@ -24,7 +24,7 @@ export function mountParticleHeadline({
   lines,
   settleImmediately = false,
 }: ParticleHeadlineOptions): () => void {
-  const ctx = canvas.getContext("2d", { alpha: false });
+  const ctx = canvas.getContext("2d");
   if (!ctx) return () => {};
 
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -39,10 +39,14 @@ export function mountParticleHeadline({
   let running = false;
   let disposed = false;
 
+  /** Lay the headline out again for the host's current size. A no-op if the size is unchanged. */
   function build() {
-    width = host.clientWidth;
-    height = host.clientHeight;
-    if (!width || !height) return;
+    const nextWidth = host.clientWidth;
+    const nextHeight = host.clientHeight;
+    if (!nextWidth || !nextHeight) return;
+    if (nextWidth === width && nextHeight === height) return;
+    width = nextWidth;
+    height = nextHeight;
     const gutter = parseFloat(getComputedStyle(host).paddingLeft) || 0;
     canvas.width = width * dpr;
     canvas.height = height * dpr;
@@ -93,7 +97,15 @@ export function mountParticleHeadline({
   host.addEventListener("pointerleave", onLeave);
   host.addEventListener("pointerdown", onDown);
 
-  const resize = new ResizeObserver(() => build());
+  // Rebuilding samples the whole headline again, so wait for the resize to settle.
+  // The host's padding is the gutter, which can change without its content box
+  // changing, so watch the border box and the window as well.
+  let rebuildTimer = 0;
+  const rebuildSoon = () => {
+    window.clearTimeout(rebuildTimer);
+    rebuildTimer = window.setTimeout(build, 120);
+  };
+  const resize = new ResizeObserver(rebuildSoon);
   const visibility = new IntersectionObserver(([entry]) => {
     if (entry.isIntersecting) start();
     else stop();
@@ -102,13 +114,17 @@ export function mountParticleHeadline({
   // Measure only once the real font is available, or the text is sampled in a fallback face.
   document.fonts.ready.then(() => {
     if (disposed) return;
-    resize.observe(host); // fires once immediately, which does the first build
+    build();
+    resize.observe(host, { box: "border-box" });
+    window.addEventListener("resize", rebuildSoon);
     visibility.observe(host);
   });
 
   return () => {
     disposed = true;
     stop();
+    window.clearTimeout(rebuildTimer);
+    window.removeEventListener("resize", rebuildSoon);
     resize.disconnect();
     visibility.disconnect();
     host.removeEventListener("pointermove", onMove);
