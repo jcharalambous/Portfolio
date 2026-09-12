@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Rail } from "@/components/nav/rail";
 import { siteConfig } from "@/lib/site";
-import "./globals.css";
+import "@/styles/globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),

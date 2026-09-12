@@ -1,7 +1,7 @@
 "use client"; // Error boundaries must be Client Components
 
 import { Button } from "@/components/ui/button";
-import "./globals.css";
+import "@/styles/globals.css";
 
 // Replaces the root layout when it throws, so it must render <html> and <body>.
 export default function GlobalError({

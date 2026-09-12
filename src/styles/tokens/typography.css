@@ -1,0 +1,22 @@
+@theme {
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+    "Helvetica Neue", Inter, system-ui, sans-serif;
+  --font-mono:
+    "SF Mono", ui-monospace, Menlo, Monaco, "JetBrains Mono", Consolas, monospace;
+
+  /* Type scale. Named after the role, not the size, so sections share them. */
+  --text-heading: clamp(36px, 4.6vw, 56px);
+  --text-heading--line-height: 1.06;
+  --text-heading--letter-spacing: -0.02em;
+  --text-heading--font-weight: 600;
+
+  --text-kicker: 17px;
+  --text-kicker--line-height: 1.19;
+  --text-kicker--letter-spacing: 0.011em;
+  --text-kicker--font-weight: 600;
+
+  --text-lede: 21px;
+  --text-lede--line-height: 1.38;
+  --text-lede--letter-spacing: 0.011em;
+}

@@ -1,0 +1,15 @@
+@theme {
+  --ease-strong: cubic-bezier(0.23, 1, 0.32, 1);
+
+  --animate-pulse-ring: pulse-ring 0.9s var(--ease-strong) forwards;
+  @keyframes pulse-ring {
+    from {
+      opacity: 0.8;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(3.2);
+    }
+  }
+}
