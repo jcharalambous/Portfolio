@@ -12,6 +12,6 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 - `src/app/` holds routes and Next.js special files only.
 - `src/components/` holds shared UI. `src/components/ui/` is for primitives such as `Button`.
-- `src/lib/` holds non-UI code. `site.ts` is site config, `projects.ts` is the project data and helpers.
+- `src/lib/` holds non-UI code. `site.ts` is site identity and URL.
 - Import with the `@/` alias, for example `@/components/ui/button`.
 - Tests sit next to the code as `*.test.ts` or `*.test.tsx` and run with `npm test` (Vitest).
