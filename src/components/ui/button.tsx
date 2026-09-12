@@ -7,7 +7,8 @@ const variants = {
   /** The blue pill. */
   primary: "bg-accent text-white hover:bg-accent-hover",
   /** Quiet, for secondary actions beside a primary one. */
-  ghost: "border border-white/[0.12] bg-white/[0.06] text-ink hover:border-white/[0.22] hover:bg-white/10",
+  ghost:
+    "border border-white/[0.12] bg-white/[0.06] text-ink hover:border-white/[0.22] hover:bg-white/10",
 };
 
 const sizes = {

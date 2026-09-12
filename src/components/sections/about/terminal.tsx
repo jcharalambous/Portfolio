@@ -16,7 +16,7 @@ function Cursor() {
   return (
     <span
       aria-hidden="true"
-      className="ml-0.5 inline-block h-[1.1em] w-2 translate-y-0.5 bg-ink animate-blink motion-reduce:animate-none"
+      className="ml-0.5 inline-block h-[1.1em] w-2 translate-y-0.5 animate-blink bg-ink motion-reduce:animate-none"
     />
   );
 }
@@ -27,7 +27,9 @@ export function Terminal({ title, script }: Props) {
   const inView = useInView(ref, { threshold: 0.35 });
   const { line, chars, done } = useTypewriter(script, {
     start: inView,
-    instant: typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    instant:
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches,
   });
 
   return (
@@ -53,7 +55,10 @@ export function Terminal({ title, script }: Props) {
               {typing && <Cursor />}
             </p>
           ) : (
-            <p key={i} className={`mb-3.5 whitespace-pre-wrap ${entry.bright ? "text-ink" : "text-ink/70"}`}>
+            <p
+              key={i}
+              className={`mb-3.5 whitespace-pre-wrap ${entry.bright ? "text-ink" : "text-ink/70"}`}
+            >
               {text}
             </p>
           );

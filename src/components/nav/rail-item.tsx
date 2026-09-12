@@ -45,7 +45,7 @@ export function RailItem({ section, state }: Props) {
         {active && (
           <span
             aria-hidden="true"
-            className={`absolute top-1/2 left-1/2 size-[11px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white opacity-0 animate-pulse-ring motion-reduce:animate-none stack:left-auto ${onLine}`}
+            className={`absolute top-1/2 left-1/2 size-[11px] -translate-x-1/2 -translate-y-1/2 animate-pulse-ring rounded-full border border-white opacity-0 motion-reduce:animate-none stack:left-auto ${onLine}`}
           />
         )}
         <span className={`${label} ${active ? "text-ink max-wide:opacity-100" : "text-ink-muted"}`}>

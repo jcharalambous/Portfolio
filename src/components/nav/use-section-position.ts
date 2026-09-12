@@ -1,8 +1,5 @@
 import { useEffect, useEffectEvent } from "react";
-import {
-  locateSection,
-  type SectionPosition,
-} from "@/lib/scroll/active-section";
+import { locateSection, type SectionPosition } from "@/lib/scroll/active-section";
 
 /**
  * Reports which section sits under the middle of the viewport, and how far

@@ -22,7 +22,13 @@ export function useDrawProgress(
       frame = 0;
       const rect = el.getBoundingClientRect();
       report(
-        reduce ? 1 : drawProgress({ top: rect.top, height: rect.height, viewportHeight: window.innerHeight }),
+        reduce
+          ? 1
+          : drawProgress({
+              top: rect.top,
+              height: rect.height,
+              viewportHeight: window.innerHeight,
+            }),
       );
     };
     const schedule = () => {

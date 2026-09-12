@@ -5,10 +5,7 @@ export type SectionPosition = { index: number; progress: number };
 
 const clamp01 = (n: number) => Math.min(1, Math.max(0, n));
 
-export function locateSection(
-  bounds: readonly SectionBounds[],
-  probe: number,
-): SectionPosition {
+export function locateSection(bounds: readonly SectionBounds[], probe: number): SectionPosition {
   if (bounds.length === 0) return { index: 0, progress: 0 };
 
   let index = 0;

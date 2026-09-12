@@ -16,4 +16,5 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - `src/hooks/` holds React hooks used by more than one section, such as `useInView`.
 - `src/lib/` holds non-UI code. `site.ts` is site identity and URL.
 - Import with the `@/` alias, for example `@/components/ui/button`.
+- Prettier formats everything (`npm run format`), with the Tailwind plugin ordering class names. CI fails on unformatted files.
 - Unit tests sit next to the code as `*.test.ts` or `*.test.tsx` and run with `npm test` (Vitest). Browser tests live in `e2e/` and run with `npm run test:e2e` (Playwright) against a production build on port 3100. Never kill processes by name to clean up; a dev server may be running.

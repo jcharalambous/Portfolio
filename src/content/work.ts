@@ -33,7 +33,16 @@ export const workContent = {
           text: "Brought the company onto sane security foundations: centralised password management, security training, IT infrastructure ownership. Drove AI adoption from essentially zero to daily use across the business.",
         },
       ],
-      tags: ["Python", "FastAPI", "Next.js", "Docker", "Portainer", "Prometheus", "Grafana", "HubSpot"],
+      tags: [
+        "Python",
+        "FastAPI",
+        "Next.js",
+        "Docker",
+        "Portainer",
+        "Prometheus",
+        "Grafana",
+        "HubSpot",
+      ],
     },
     {
       role: "Network Architect & Engineer",

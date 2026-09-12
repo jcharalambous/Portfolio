@@ -1,9 +1,8 @@
 @theme {
   --font-sans:
-    -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
-    "Helvetica Neue", Inter, system-ui, sans-serif;
-  --font-mono:
-    "SF Mono", ui-monospace, Menlo, Monaco, "JetBrains Mono", Consolas, monospace;
+    -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Inter,
+    system-ui, sans-serif;
+  --font-mono: "SF Mono", ui-monospace, Menlo, Monaco, "JetBrains Mono", Consolas, monospace;
 
   /* Type scale. Named after the role, not the size, so sections share them. */
   --text-heading: clamp(36px, 4.6vw, 56px);

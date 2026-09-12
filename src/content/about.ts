@@ -1,6 +1,5 @@
 export type TerminalLine =
-  | { kind: "command"; text: string }
-  | { kind: "output"; text: string; bright?: boolean };
+  { kind: "command"; text: string } | { kind: "output"; text: string; bright?: boolean };
 
 export type Fact = {
   label: string;

@@ -7,7 +7,9 @@ export function SiteFooter() {
 
   return (
     <footer className="mt-auto flex flex-wrap justify-between gap-2 border-t border-white/[0.08] pt-5 text-xs text-ink-muted">
-      <span>© {new Date().getFullYear()} {siteConfig.name}</span>
+      <span>
+        © {new Date().getFullYear()} {siteConfig.name}
+      </span>
       <span>
         Robot by{" "}
         <a

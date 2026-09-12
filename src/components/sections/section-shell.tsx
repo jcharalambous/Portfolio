@@ -27,7 +27,7 @@ export function SectionShell({ id, heading, intro, align = "center", children }:
     >
       <header className="mb-12">
         <p className="mb-2.5 text-kicker text-ink-muted">{label}</p>
-        <h2 className="max-w-[18ch] text-balance text-heading">{heading ?? label}</h2>
+        <h2 className="max-w-[18ch] text-heading text-balance">{heading ?? label}</h2>
         {intro && <p className="mt-[18px] max-w-[50ch] text-lede text-ink-muted">{intro}</p>}
       </header>
       {children}

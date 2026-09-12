@@ -16,7 +16,9 @@ const SCENE_FALLBACK_MS = 2500;
 
 /** The live scene runs from the `stack` breakpoint up; smaller screens get the still. */
 function liveSceneQuery() {
-  const stack = getComputedStyle(document.documentElement).getPropertyValue("--breakpoint-stack").trim();
+  const stack = getComputedStyle(document.documentElement)
+    .getPropertyValue("--breakpoint-stack")
+    .trim();
   return `(min-width: ${stack || "51.25rem"})`;
 }
 
@@ -25,7 +27,8 @@ function liveSceneQuery() {
 const fades =
   "after:pointer-events-none after:absolute after:content-[''] stack:after:inset-y-0 stack:after:left-0 stack:after:w-[22%] stack:after:bg-linear-to-r stack:after:from-page stack:after:to-transparent max-stack:after:inset-x-0 max-stack:after:top-0 max-stack:after:h-[30%] max-stack:after:bg-linear-to-b max-stack:after:from-page max-stack:after:to-transparent max-stack:before:pointer-events-none max-stack:before:absolute max-stack:before:inset-x-0 max-stack:before:bottom-0 max-stack:before:z-10 max-stack:before:h-[40%] max-stack:before:bg-linear-to-t max-stack:before:from-page/90 max-stack:before:to-transparent max-stack:before:content-['']";
 
-const fadeIn = "opacity-0 animate-fade-in motion-reduce:[animation-duration:400ms] motion-reduce:[animation-delay:0ms]";
+const fadeIn =
+  "opacity-0 animate-fade-in motion-reduce:[animation-duration:400ms] motion-reduce:[animation-delay:0ms]";
 
 /**
  * The hero's two visual layers and the order they appear in. The headline
@@ -58,7 +61,7 @@ export function HeroStage({ lines, scene, poster }: Props) {
       />
       <div
         aria-hidden="true"
-        className={`absolute stack:inset-y-0 stack:right-0 stack:z-20 stack:w-1/2 max-stack:inset-x-0 max-stack:top-[46%] max-stack:bottom-14 max-stack:z-0 ${fades}`}
+        className={`absolute max-stack:inset-x-0 max-stack:top-[46%] max-stack:bottom-14 max-stack:z-0 stack:inset-y-0 stack:right-0 stack:z-20 stack:w-1/2 ${fades}`}
       >
         <Image
           src={poster}
