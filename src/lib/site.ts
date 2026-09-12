@@ -9,10 +9,19 @@ function resolveSiteUrl() {
   return "http://localhost:3000";
 }
 
-// Who the site is about. Used by metadata, robots and the sitemap.
+// Who the site is about. Section copy lives in src/content/.
 export const siteConfig = {
   name: "John Charalambous",
+  role: "Software Engineer",
   description:
     "Software engineer. I build things for the web, and the infrastructure that keeps them running.",
+  email: "business@charalambous.network",
   url: resolveSiteUrl(),
+  links: [
+    { label: "GitHub", href: "https://github.com/jcharalambous" },
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/john-charalambous-16a7ab2b3",
+    },
+  ],
 };

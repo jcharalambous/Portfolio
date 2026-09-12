@@ -3,6 +3,8 @@
   --breakpoint-wide: 91.25rem;
   --spacing-rail: 220px;
   --spacing-rail-compact: 64px;
+  /* Below this the hero stacks: scene under the text, social links hidden. */
+  --breakpoint-stack: 51.25rem;
 }
 
 /* Left and right page gutter: 22px past the rail, or the centred 1024px column, whichever is wider. */

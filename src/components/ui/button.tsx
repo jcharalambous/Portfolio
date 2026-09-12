@@ -1,42 +1,16 @@
-import Link from "next/link";
 import type { ComponentProps } from "react";
 
-const base =
-  "inline-flex h-12 items-center justify-center rounded-full px-5 font-medium transition-colors";
-
-const variants = {
-  primary: "bg-foreground text-background hover:bg-[#383838] dark:hover:bg-[#ccc]",
-  secondary:
-    "border border-black/[.08] text-black hover:bg-black/[.04] dark:border-white/[.145] dark:text-zinc-50 dark:hover:bg-[#1a1a1a]",
-};
-
-type Variant = keyof typeof variants;
+const pill =
+  "inline-flex items-center justify-center rounded-full bg-accent px-[22px] py-3 text-[17px] leading-[1.2] tracking-[-0.02em] text-white transition-[background-color,transform] duration-200 ease-out hover:bg-accent-hover active:scale-[0.97] active:duration-100 focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link";
 
 function cx(...classes: Array<string | undefined>) {
   return classes.filter(Boolean).join(" ");
 }
 
-export function Button({
-  className,
-  variant = "primary",
-  type = "button",
-  ...props
-}: ComponentProps<"button"> & { variant?: Variant }) {
-  return (
-    <button
-      type={type}
-      className={cx(base, variants[variant], className)}
-      {...props}
-    />
-  );
+export function Button({ className, type = "button", ...props }: ComponentProps<"button">) {
+  return <button type={type} className={cx(pill, className)} {...props} />;
 }
 
-export function ButtonLink({
-  className,
-  variant = "primary",
-  ...props
-}: ComponentProps<typeof Link> & { variant?: Variant }) {
-  return (
-    <Link className={cx(base, variants[variant], className)} {...props} />
-  );
+export function ButtonLink({ className, ...props }: ComponentProps<"a">) {
+  return <a className={cx(pill, className)} {...props} />;
 }

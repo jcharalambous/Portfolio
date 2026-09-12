@@ -2,7 +2,7 @@
 export const sections = [
   { id: "top", label: "Intro", meta: "Software engineer, Hertfordshire" },
   { id: "about", label: "About", meta: "How I got here" },
-  { id: "work", label: "Work", meta: "VendingSense, 2025 – present" },
+  { id: "work", label: "Work", meta: "Vending Sense, 2025 – present" },
   { id: "projects", label: "Projects", meta: "Unity, and what it replaced" },
   { id: "approach", label: "Approach", meta: "Decisions and what they cost" },
   { id: "skills", label: "Skills", meta: "Languages, frameworks, tools" },

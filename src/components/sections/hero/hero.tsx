@@ -1,4 +1,12 @@
-/** Full-viewport opener. The only section that does not use the shared shell. */
+import { heroContent } from "@/content/hero";
+import { HeroCopy } from "./hero-copy";
+
+/** Full-viewport opener. Positions its parts; each part is its own component. */
 export function Hero() {
-  return <section id="top" className="min-h-screen" />;
+  return (
+    <section id="top" className="relative h-screen overflow-hidden">
+      <h1 className="sr-only">{heroContent.headline}</h1>
+      <HeroCopy />
+    </section>
+  );
 }

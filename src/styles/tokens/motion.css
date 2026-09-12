@@ -1,6 +1,25 @@
 @theme {
   --ease-strong: cubic-bezier(0.23, 1, 0.32, 1);
 
+  /* Load-in sequence. Delays are set per element. */
+  --animate-fade-in: fade-in 1s ease forwards;
+  @keyframes fade-in {
+    to {
+      opacity: 1;
+    }
+  }
+  --animate-rise-in: rise-in 1s var(--ease-strong) forwards;
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
   --animate-pulse-ring: pulse-ring 0.9s var(--ease-strong) forwards;
   @keyframes pulse-ring {
     from {
