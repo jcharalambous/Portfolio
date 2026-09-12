@@ -13,7 +13,7 @@ export function HeroCopy() {
   const { kicker, supporting, primaryCta, secondaryCta } = heroContent;
 
   return (
-    <div className="pointer-events-none absolute inset-0 z-30 [&_a]:pointer-events-auto [&_button]:pointer-events-auto">
+    <div className="pointer-events-none absolute inset-0 z-20 [&_a]:pointer-events-auto [&_button]:pointer-events-auto">
       <p
         className={`absolute left-(--gutter) text-lede leading-[1.19] font-semibold text-ink-muted ${fadeIn} [animation-delay:300ms]`}
         style={{ top: edge }}

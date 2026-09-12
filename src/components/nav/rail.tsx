@@ -37,7 +37,7 @@ export function Rail() {
     <nav
       aria-label="Sections"
       data-idle={idle || undefined}
-      className="pointer-events-none fixed inset-y-0 left-0 z-10 flex w-rail-compact flex-col justify-center pl-[26px] transition-opacity duration-500 ease-out hover:opacity-100 hover:duration-200 focus-within:opacity-100 data-idle:opacity-40 wide:w-rail wide:pl-10"
+      className="pointer-events-none fixed inset-y-0 left-0 z-50 flex w-rail-compact flex-col justify-center pl-[26px] transition-opacity duration-500 ease-out hover:opacity-100 hover:duration-200 focus-within:opacity-100 data-idle:opacity-40 wide:w-rail wide:pl-10"
     >
       <a
         href="#top"
