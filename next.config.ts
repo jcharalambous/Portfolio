@@ -1,30 +1,38 @@
 import type { NextConfig } from "next";
 
-/*
- * Security headers sent with every response, as the Next.js docs lay them out.
- * The Content Security Policy is the exception: it needs a fresh nonce per
- * request, so it lives in src/proxy.ts.
- */
-const securityHeaders = [
-  // Two years of HTTPS only, subdomains included.
-  { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
-  { key: "X-Content-Type-Options", value: "nosniff" },
-  // Superseded by the policy's frame-ancestors, kept for older browsers.
-  { key: "X-Frame-Options", value: "DENY" },
-  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-  {
-    key: "Permissions-Policy",
-    value: "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()",
-  },
-  { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
-];
-
 const nextConfig: NextConfig = {
+  // Don't announce the framework in every response.
+  poweredByHeader: false,
+
   // Dev only: let phones on the same network load the dev server's scripts.
   // Update the address if the Mac's network address changes.
   allowedDevOrigins: ["172.16.30.253"],
-  headers() {
-    return Promise.resolve([{ source: "/:path*", headers: securityHeaders }]);
+
+  // Security headers on every response. The Content Security Policy needs a
+  // fresh nonce per request, so that one lives in src/proxy.ts.
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          // Two years of HTTPS only, subdomains included.
+          { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
+          // Superseded by the policy's frame-ancestors, kept for older browsers.
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          {
+            key: "Permissions-Policy",
+            value:
+              "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()",
+          },
+          // Isolate the page from other origins' windows and resources.
+          { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+          { key: "Cross-Origin-Embedder-Policy", value: "credentialless" },
+          { key: "Cross-Origin-Resource-Policy", value: "same-origin" },
+        ],
+      },
+    ];
   },
 };
 
