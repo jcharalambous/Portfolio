@@ -24,9 +24,10 @@ function contentSecurityPolicy(nonce: string, isDev: boolean): string {
   return [
     "default-src 'self'",
     // Only scripts carrying this request's nonce run; what they load is trusted in turn.
-    // `wasm-unsafe-eval` lets the 3D viewer run its WebAssembly. Dev needs eval for React's error tooling.
-    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'wasm-unsafe-eval'${isDev ? " 'unsafe-eval'" : ""}`,
-    // Next.js's development overlay injects its own inline styles and a data: video, so dev relaxes those two.
+    // The Spline viewer builds code from strings while reading a scene, so trusted
+    // scripts may eval; untrusted ones still never run at all.
+    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'unsafe-eval' 'wasm-unsafe-eval'`,
+    // Next.js's development overlay injects its own inline styles, so dev relaxes that.
     isDev
       ? "style-src 'self' 'unsafe-inline'"
       : `style-src 'self' 'nonce-${nonce}' ${SPLINE_VIEWER_STYLE_HASHES}`,
@@ -38,7 +39,8 @@ function contentSecurityPolicy(nonce: string, isDev: boolean): string {
     `connect-src 'self'${isDev ? " ws: wss:" : ""}`,
     // The 3D viewer spins up workers from blobs.
     "worker-src 'self' blob:",
-    isDev ? "media-src 'self' data:" : "media-src 'self'",
+    // The 3D viewer's loading hint is a tiny data: video; data: media cannot run code.
+    "media-src 'self' data:",
     "manifest-src 'self'",
     "object-src 'none'",
     "base-uri 'self'",

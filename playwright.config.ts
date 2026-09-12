@@ -16,7 +16,13 @@ export default defineConfig({
   projects: [
     {
       name: "desktop",
-      use: { ...devices["Desktop Chrome"], viewport: { width: 1512, height: 866 } },
+      use: {
+        ...devices["Desktop Chrome"],
+        viewport: { width: 1512, height: 866 },
+        // Full Chromium with software WebGL, so the 3D viewer really runs in tests.
+        channel: "chromium",
+        launchOptions: { args: ["--use-angle=swiftshader", "--enable-unsafe-swiftshader"] },
+      },
     },
     {
       name: "phone",
