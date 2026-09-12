@@ -9,19 +9,10 @@ function resolveSiteUrl() {
   return "http://localhost:3000";
 }
 
-// Single source of truth for site-wide values used by the layout, metadata,
-// robots and sitemap. Fill these in before deploying.
+// Who the site is about. Used by metadata, robots and the sitemap.
 export const siteConfig = {
   name: "John Charalambous",
-  tagline: "I build things for the web.",
-  description: "Personal portfolio and projects of John Charalambous.",
-  // Shown on the contact page. Replace with the address you want public.
-  email: "hello@example.com",
+  description:
+    "Software engineer. I build things for the web, and the infrastructure that keeps them running.",
   url: resolveSiteUrl(),
-  nav: [
-    { label: "Projects", href: "/projects" },
-    { label: "About", href: "/about" },
-    { label: "Contact", href: "/contact" },
-  ],
-  links: [{ label: "GitHub", href: "https://github.com/jcharalambous" }],
 };
