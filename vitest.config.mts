@@ -8,7 +8,6 @@ export default defineConfig({
   },
   test: {
     environment: "jsdom",
-    // No tests yet on the rebuilt site. Remove once the first test lands.
-    passWithNoTests: true,
+    setupFiles: ["./vitest.setup.ts"],
   },
 });

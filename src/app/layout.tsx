@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Rail } from "@/components/nav/rail";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
@@ -25,8 +26,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className="dark h-full antialiased">
+      <body className="flex min-h-full flex-col">
+        <Rail />
+        {children}
+      </body>
     </html>
   );
 }
