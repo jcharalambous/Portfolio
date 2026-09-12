@@ -1,6 +1,11 @@
 import { heroContent } from "@/content/hero";
 import { HeroCopy } from "./hero-copy";
 import { ParticleHeadline } from "./particle-headline";
+import { SplineScene } from "./spline-scene";
+
+// The scene fades in after the headline has started to form. Under reduced motion it is a short plain fade.
+const sceneFade =
+  "opacity-0 animate-fade-in [animation-duration:1400ms] [animation-delay:500ms] motion-reduce:[animation-duration:400ms] motion-reduce:[animation-delay:0ms]";
 
 /**
  * Full-viewport opener. Positions its parts; each part is its own component.
@@ -13,6 +18,10 @@ export function Hero() {
       <ParticleHeadline
         lines={heroContent.headlineLines}
         className="absolute inset-0 z-0 block h-full w-full bg-page"
+      />
+      <SplineScene
+        src={heroContent.scene.src}
+        className={`absolute inset-y-0 right-0 z-10 w-1/2 max-stack:top-auto max-stack:h-[42%] max-stack:w-full ${sceneFade}`}
       />
       <HeroCopy />
     </section>

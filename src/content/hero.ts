@@ -21,4 +21,14 @@ export const heroContent = {
   },
   primaryCta: { label: "See the work", href: "#projects" },
   secondaryCta: { label: "More about me", href: "#about" },
+  /** Self-hosted from public/spline. See the README there for provenance. */
+  scene: {
+    src: "/spline/nexbot.splinecode",
+    credit: {
+      model: "NEXBOT",
+      author: "ahmedkhaledemara0909",
+      href: "https://spline.design",
+      licence: "CC BY 4.0",
+    },
+  },
 };
