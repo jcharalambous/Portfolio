@@ -16,13 +16,19 @@ const page = await browser.newPage({ viewport: { width: 390, height: 844 }, devi
 // Force the live scene on at phone size, just for this capture.
 await page.addInitScript(() => {
   const real = window.matchMedia.bind(window);
-  window.matchMedia = (q) => (q.startsWith("(min-width") ? { ...real(q), matches: true, addEventListener() {}, removeEventListener() {} } : real(q));
+  window.matchMedia = (q) =>
+    q.startsWith("(min-width")
+      ? { ...real(q), matches: true, addEventListener() {}, removeEventListener() {} }
+      : real(q);
 });
 await page.goto(base);
 await page.waitForSelector("spline-viewer canvas", { timeout: 30_000 });
 await page.waitForTimeout(6000);
 // Hide everything that is not the scene: copy, particles, fades, the viewer's badge.
-await page.addStyleTag({ content: "#top > canvas, #top > div:last-child { visibility: hidden !important } #top div::before, #top div::after { display: none !important }" });
+await page.addStyleTag({
+  content:
+    "#top > canvas, #top > div:last-child { visibility: hidden !important } #top div::before, #top div::after { display: none !important }",
+});
 await page.evaluate(() => {
   const logo = document.querySelector("spline-viewer")?.shadowRoot?.querySelector("#logo");
   if (logo instanceof HTMLElement) logo.style.display = "none";

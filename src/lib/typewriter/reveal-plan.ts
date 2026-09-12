@@ -40,7 +40,10 @@ export function revealPlan(
 }
 
 /** When the whole script has finished, including the pause after the last line. */
-export function revealEnd(script: readonly TerminalLine[], timing: RevealTiming = DEFAULT_TIMING): number {
+export function revealEnd(
+  script: readonly TerminalLine[],
+  timing: RevealTiming = DEFAULT_TIMING,
+): number {
   const last = script[script.length - 1];
   if (!last) return 0;
   const steps = revealPlan(script, timing);

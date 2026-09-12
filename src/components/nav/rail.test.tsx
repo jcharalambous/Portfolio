@@ -37,7 +37,9 @@ test("the rail follows the section under the middle of the viewport", async () =
     </>,
   );
   const current = () =>
-    screen.getAllByRole("link").find((a) => a.getAttribute("aria-current") === "location")
+    screen
+      .getAllByRole("link")
+      .find((a) => a.getAttribute("aria-current") === "location")
       ?.getAttribute("href");
 
   await scrollTo(0);

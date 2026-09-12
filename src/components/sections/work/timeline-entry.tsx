@@ -7,12 +7,14 @@ type Props = {
   index: number;
 };
 
+const stagger = (index: number) => ([0, 60, 120, 180] as const)[Math.min(index, 3)];
+
 /** One job on the timeline: its marker on the line, dates, title, paragraphs and tags. */
 export function TimelineEntry({ entry, index }: Props) {
   const { role, org, from, to, current, minor, body, tags } = entry;
 
   return (
-    <Reveal delay={Math.min(index, 3) * 60} className={`relative ${minor ? "pb-10" : "pb-14"} last:pb-0`}>
+    <Reveal delay={stagger(index)} className={`relative ${minor ? "pb-10" : "pb-14"} last:pb-0`}>
       <span
         aria-hidden="true"
         className={`absolute top-2 -left-10 size-[13px] translate-x-[-50%] translate-x-[6.5px] rounded-full border-[1.5px] ${
@@ -24,9 +26,13 @@ export function TimelineEntry({ entry, index }: Props) {
       <p className="mb-1.5 text-xs tracking-[0.02em] text-ink-muted tabular-nums">
         {from} — {current ? <b className="font-medium text-live">{to}</b> : to}
       </p>
-      <h3 className={`leading-[1.2] font-semibold tracking-[-0.015em] ${minor ? "text-[19px]" : "text-[21px] lg:text-2xl"}`}>
+      <h3
+        className={`leading-[1.2] font-semibold tracking-[-0.015em] ${minor ? "text-[19px]" : "text-[21px] lg:text-2xl"}`}
+      >
         {role}
-        <small className={`mt-0.5 block font-normal tracking-[-0.005em] text-ink-muted ${minor ? "text-[15px]" : "text-[17px]"}`}>
+        <small
+          className={`mt-0.5 block font-normal tracking-[-0.005em] text-ink-muted ${minor ? "text-[15px]" : "text-[17px]"}`}
+        >
           {org}
         </small>
       </h3>

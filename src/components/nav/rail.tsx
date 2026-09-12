@@ -49,7 +49,7 @@ export function Rail() {
     <nav
       aria-label="Sections"
       data-idle={idle || undefined}
-      className="pointer-events-none fixed z-50 flex transition-opacity duration-500 ease-out hover:opacity-100 hover:duration-200 focus-within:opacity-100 data-idle:opacity-40 max-stack:inset-x-0 max-stack:bottom-0 max-stack:h-14 max-stack:items-center max-stack:justify-center max-stack:border-t max-stack:border-line-soft max-stack:bg-page/80 max-stack:backdrop-blur-md stack:inset-y-0 stack:left-0 stack:w-rail-compact stack:flex-col stack:justify-center stack:pl-[26px] wide:w-rail wide:pl-10"
+      className="pointer-events-none fixed z-50 flex transition-opacity duration-500 ease-out focus-within:opacity-100 hover:opacity-100 hover:duration-200 data-idle:opacity-40 max-stack:inset-x-0 max-stack:bottom-0 max-stack:h-14 max-stack:items-center max-stack:justify-center max-stack:border-t max-stack:border-line-soft max-stack:bg-page/80 max-stack:backdrop-blur-md stack:inset-y-0 stack:left-0 stack:w-rail-compact stack:flex-col stack:justify-center stack:pl-[26px] wide:w-rail wide:pl-10"
     >
       <a
         href="#top"
@@ -61,11 +61,7 @@ export function Rail() {
         <RailProgress ref={fillRef} />
         <ol ref={listRef} className="flex max-stack:flex-row stack:flex-col stack:gap-[22px]">
           {sections.map((section, index) => (
-            <RailItem
-              key={section.id}
-              section={section}
-              state={stateFor(index, active)}
-            />
+            <RailItem key={section.id} section={section} state={stateFor(index, active)} />
           ))}
         </ol>
       </div>

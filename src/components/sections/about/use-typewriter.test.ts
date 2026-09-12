@@ -12,9 +12,12 @@ beforeEach(() => vi.useFakeTimers());
 afterEach(() => vi.useRealTimers());
 
 test("shows everything at first, hides it once mounted, then types when started", () => {
-  const { result, rerender } = renderHook(({ start }) => useTypewriter(script, { start, instant: false }), {
-    initialProps: { start: false },
-  });
+  const { result, rerender } = renderHook(
+    ({ start }) => useTypewriter(script, { start, instant: false }),
+    {
+      initialProps: { start: false },
+    },
+  );
   // After mount, nothing is revealed and nothing happens until start.
   expect(result.current).toEqual({ line: 0, chars: 0, done: false });
   act(() => vi.advanceTimersByTime(5000));

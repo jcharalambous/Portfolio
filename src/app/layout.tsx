@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { connection } from "next/server";
 import { Rail } from "@/components/nav/rail";
 import { siteConfig } from "@/lib/site";
 import "@/styles/globals.css";
@@ -24,7 +25,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  // Render per request: the Content Security Policy nonce differs every time.
+  await connection();
   return (
     <html lang="en" className="dark h-full antialiased">
       <body className="flex min-h-full flex-col">

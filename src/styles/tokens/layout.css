@@ -14,15 +14,9 @@
 :root {
   --gutter: 22px;
   @variant stack {
-    --gutter: max(
-      calc(var(--spacing-rail-compact) + 22px),
-      calc((100vw - 1024px) / 2 + 22px)
-    );
+    --gutter: max(calc(var(--spacing-rail-compact) + 22px), calc((100vw - 1024px) / 2 + 22px));
   }
   @variant wide {
-    --gutter: max(
-      calc(var(--spacing-rail) + 22px),
-      calc((100vw - 1024px) / 2 + 22px)
-    );
+    --gutter: max(calc(var(--spacing-rail) + 22px), calc((100vw - 1024px) / 2 + 22px));
   }
 }

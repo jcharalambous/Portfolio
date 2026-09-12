@@ -7,26 +7,60 @@ export type SkillGroup = {
 export const skillsContent = {
   heading: "What I reach for, and where I've used it.",
   groups: [
-    { title: "Languages", items: ["Python", "TypeScript", "JavaScript", "SQL", "HTML", "CSS", "Bash"] },
-    { title: "Backend", items: ["FastAPI", "Django", "Flask", "Express", "SQLAlchemy", "Pydantic"] },
+    {
+      title: "Languages",
+      items: ["Python", "TypeScript", "JavaScript", "SQL", "HTML", "CSS", "Bash"],
+    },
+    {
+      title: "Backend",
+      items: ["FastAPI", "Django", "Flask", "Express", "SQLAlchemy", "Pydantic"],
+    },
     { title: "Frontend", items: ["Next.js", "React", "Tailwind CSS"] },
     {
       title: "Data & messaging",
-      items: ["PostgreSQL", "MySQL", "SQLite", "Supabase", "Firebase", "Redis", "Redis Pub/Sub", "Redis Streams", "RabbitMQ"],
+      items: [
+        "PostgreSQL",
+        "MySQL",
+        "SQLite",
+        "Supabase",
+        "Firebase",
+        "Redis",
+        "Redis Pub/Sub",
+        "Redis Streams",
+        "RabbitMQ",
+      ],
     },
     {
       title: "Infrastructure",
-      items: ["Docker", "Portainer", "Nginx", "Linux", "Networking", "AWS", "CI/CD pipelines", "GitHub Actions"],
+      items: [
+        "Docker",
+        "Portainer",
+        "Nginx",
+        "Linux",
+        "Networking",
+        "AWS",
+        "CI/CD pipelines",
+        "GitHub Actions",
+      ],
     },
     { title: "Observability", items: ["Prometheus", "Grafana", "Loki", "Sentry"] },
     {
       title: "Testing & quality",
       items: ["Pytest", "Jest", "Vitest", "Playwright", "Ruff", "ESLint", "Prettier"],
     },
-    { title: "Integration & AI", items: ["HubSpot API", "Google APIs", "OpenAI API", "Claude API", "MCP"] },
+    {
+      title: "Integration & AI",
+      items: ["HubSpot API", "Google APIs", "OpenAI API", "Claude API", "MCP"],
+    },
     {
       title: "How I build",
-      items: ["Domain-driven design", "Hexagonal architecture", "Event-driven systems", "Test-first", "RBAC"],
+      items: [
+        "Domain-driven design",
+        "Hexagonal architecture",
+        "Event-driven systems",
+        "Test-first",
+        "RBAC",
+      ],
     },
   ] satisfies SkillGroup[],
 };

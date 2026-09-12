@@ -11,7 +11,15 @@
  *  4. Downloads the hero scene.
  */
 import { execSync } from "node:child_process";
-import { mkdirSync, mkdtempSync, readFileSync, readdirSync, writeFileSync, copyFileSync, rmSync } from "node:fs";
+import {
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  readdirSync,
+  writeFileSync,
+  copyFileSync,
+  rmSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
@@ -50,7 +58,10 @@ for (const file of readdirSync(build).filter((f) => f.endsWith(".js"))) {
 
 // 2. wasm
 for (const [pkg, file] of Object.entries(WASM)) {
-  await download(`https://unpkg.com/@splinetool/${pkg}@${VERSION}/build/${file}`, join(VIEWER_OUT, file));
+  await download(
+    `https://unpkg.com/@splinetool/${pkg}@${VERSION}/build/${file}`,
+    join(VIEWER_OUT, file),
+  );
 }
 
 // 3. repoint the viewer at our folder
@@ -66,4 +77,6 @@ writeFileSync(viewerFile, js);
 await download(SCENE_URL, SCENE_OUT);
 
 rmSync(tmp, { recursive: true, force: true });
-console.log(`Vendored @splinetool/viewer@${VERSION}: ${before} unpkg URLs repointed, ${Object.keys(WASM).length} wasm files, scene downloaded.`);
+console.log(
+  `Vendored @splinetool/viewer@${VERSION}: ${before} unpkg URLs repointed, ${Object.keys(WASM).length} wasm files, scene downloaded.`,
+);

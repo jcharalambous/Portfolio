@@ -4,11 +4,19 @@ import { useRef, type ReactNode } from "react";
 import { useHydrated } from "@/hooks/use-hydrated";
 import { useInView } from "@/hooks/use-in-view";
 
+/** Stagger steps within a group. Classes rather than a style attribute, which the security policy would block. */
+const delays = {
+  0: "",
+  60: "[transition-delay:60ms]",
+  120: "[transition-delay:120ms]",
+  180: "[transition-delay:180ms]",
+} as const;
+
 type Props = {
   children: ReactNode;
   className?: string;
   /** Stagger within a group, in ms. */
-  delay?: number;
+  delay?: keyof typeof delays;
   threshold?: number;
 };
 
@@ -25,8 +33,7 @@ export function Reveal({ children, className, delay = 0, threshold = 0.25 }: Pro
   return (
     <div
       ref={ref}
-      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
-      className={`transition-[opacity,transform] duration-700 ease-strong motion-reduce:transition-none ${hidden ? "translate-y-4 opacity-0 motion-reduce:translate-y-0" : "translate-y-0 opacity-100"} ${className ?? ""}`}
+      className={`transition-[opacity,transform] duration-700 ease-strong motion-reduce:transition-none ${delays[delay]} ${hidden ? "translate-y-4 opacity-0 motion-reduce:translate-y-0" : "translate-y-0 opacity-100"} ${className ?? ""}`}
     >
       {children}
     </div>

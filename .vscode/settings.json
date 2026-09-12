@@ -9,5 +9,7 @@
     "**/app/**/default.tsx": "${dirname(1)}/${dirname} - default.tsx",
     "**/app/**/route.ts": "${dirname(1)}/${dirname} - route.ts"
   },
-  "css.lint.unknownAtRules": "ignore"
+  "css.lint.unknownAtRules": "ignore",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true
 }

@@ -13,7 +13,7 @@ export default function GlobalError({
 }) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col">
+      <body className="flex min-h-full flex-col">
         <div className="flex flex-1 flex-col items-center justify-center gap-6 px-6 py-32 text-center font-sans">
           <p className="font-mono text-sm text-zinc-500 dark:text-zinc-400">Error</p>
           <h1 className="text-3xl font-semibold tracking-tight text-black dark:text-zinc-50">
