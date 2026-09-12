@@ -15,4 +15,4 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - `src/styles/` holds all CSS. `globals.css` is the entry; `tokens/` holds one `@theme` file per concern (colours, typography, motion, layout); `base.css` holds element rules. Components use Tailwind utilities, never their own stylesheets.
 - `src/lib/` holds non-UI code. `site.ts` is site identity and URL.
 - Import with the `@/` alias, for example `@/components/ui/button`.
-- Tests sit next to the code as `*.test.ts` or `*.test.tsx` and run with `npm test` (Vitest).
+- Unit tests sit next to the code as `*.test.ts` or `*.test.tsx` and run with `npm test` (Vitest). Browser tests live in `e2e/` and run with `npm run test:e2e` (Playwright) against a production build on port 3100. Never kill processes by name to clean up; a dev server may be running.

@@ -1,4 +1,21 @@
-/** Full-viewport opener. The only section that does not use the shared shell. */
+import { heroContent } from "@/content/hero";
+import { HeroCopy } from "./hero-copy";
+import { HeroStage } from "./hero-stage";
+
+/**
+ * Full-viewport opener. Positions its parts; each part is its own component.
+ * The gutter is set as padding so the particle engine can read it as a number.
+ */
 export function Hero() {
-  return <section id="top" className="min-h-screen" />;
+  return (
+    <section id="top" className="relative h-svh min-h-[640px] overflow-hidden px-(--gutter)">
+      <h1 className="sr-only">{heroContent.headline}</h1>
+      <HeroStage
+        lines={heroContent.headlineLines}
+        scene={heroContent.scene.src}
+        poster={heroContent.scene.poster}
+      />
+      <HeroCopy />
+    </section>
+  );
 }

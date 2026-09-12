@@ -16,7 +16,7 @@ export function SectionShell({ id, heading, intro, children }: Props) {
   return (
     <section
       id={id}
-      className="flex min-h-screen flex-col justify-center border-t border-line-soft px-(--gutter) py-24"
+      className="flex min-h-svh flex-col justify-center border-t border-line-soft px-(--gutter) py-24"
     >
       <header className="mb-12">
         <p className="mb-2.5 text-kicker text-ink-muted">{label}</p>
