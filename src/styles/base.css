@@ -18,6 +18,11 @@ html {
   }
 }
 
+/* While a window is open the page behind it stays put. */
+html:has(dialog[open]) {
+  overflow: hidden;
+}
+
 body {
   background: var(--color-page);
   color: var(--color-ink);

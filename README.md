@@ -1,10 +1,12 @@
 # charalambous.network
 
-John Charalambous's portfolio. One scrolling page: a particle headline and a 3D robot up top, then About, Work, Projects, Approach, Skills and Contact, with a rail down the left that follows you.
+John Charalambous's portfolio. One scrolling page: a particle headline and a 3D robot up top, then About, Work, Projects, Journey, Skills and Contact, with a rail down the left that follows you.
 
 Live at [charalambous.network](https://charalambous.network), deployed by Vercel from `main`.
 
 The site is dark by design. A pendant bulb in the top right of the hero switches on a light mode, remembered in a cookie; when it comes on, the robot turns away from the glare.
+
+Journey is six lessons on a carousel of squares: the arrows, a swipe or the arrow keys move them through the middle, and the middle one opens its story in a window.
 
 ## Stack
 

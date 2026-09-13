@@ -1,9 +1,9 @@
 import type { ComponentType } from "react";
 import type { SectionId } from "@/content/sections";
 import { About } from "./about/about";
-import { Approach } from "./approach/approach";
 import { Contact } from "./contact/contact";
 import { Hero } from "./hero/hero";
+import { Journey } from "./journey/journey";
 import { Projects } from "./projects/projects";
 import { Skills } from "./skills/skills";
 import { Work } from "./work/work";
@@ -14,7 +14,7 @@ export const sectionComponents: Record<SectionId, ComponentType> = {
   about: About,
   work: Work,
   projects: Projects,
-  approach: Approach,
+  journey: Journey,
   skills: Skills,
   contact: Contact,
 };

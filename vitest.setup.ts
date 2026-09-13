@@ -28,3 +28,11 @@ class IntersectionObserverStub {
   disconnect() {}
 }
 window.IntersectionObserver = IntersectionObserverStub as unknown as typeof IntersectionObserver;
+// jsdom has no dialog methods. These keep the `open` attribute honest, which is all the components read.
+HTMLDialogElement.prototype.showModal = function () {
+  this.setAttribute("open", "");
+};
+HTMLDialogElement.prototype.close = function () {
+  this.removeAttribute("open");
+  this.dispatchEvent(new Event("close"));
+};
