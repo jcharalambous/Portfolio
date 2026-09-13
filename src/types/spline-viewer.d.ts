@@ -2,7 +2,7 @@ import type { DetailedHTMLProps, HTMLAttributes } from "react";
 
 declare global {
   /**
-   * The <spline-viewer> element from the vendored viewer (1.9.82). The runtime
+   * The <spline-viewer> element from the vendored viewer (2.0.46). The runtime
    * handle is private to the viewer; it is used only to pause the render loop
    * off screen, and everything that touches it copes with it being absent.
    */
