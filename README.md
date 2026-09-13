@@ -4,7 +4,7 @@ John Charalambous's portfolio. One scrolling page: a particle headline and a 3D 
 
 Live at [charalambous.network](https://charalambous.network), deployed by Vercel from `main`.
 
-The site is dark by design. A pendant bulb in the top right of the hero switches on a light mode, remembered in a cookie; when it comes on, the robot shields its eyes.
+The site is dark by design. A pendant bulb in the top right of the hero switches on a light mode, remembered in a cookie; when it comes on, the robot turns away from the glare.
 
 ## Stack
 

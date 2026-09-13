@@ -11,7 +11,7 @@ import { NextResponse, type NextRequest } from "next/server";
 const SPLINE_BADGE_HOST = "https://app.spline.design";
 
 /**
- * The two <style> blocks the vendored Spline viewer (1.9.82) injects for its
+ * The two <style> blocks the vendored Spline viewer (2.0.46) injects for its
  * badge and hints, allowed by content hash so nothing else inline gets through.
  * If the viewer is updated these change; the browser tests will say so.
  */

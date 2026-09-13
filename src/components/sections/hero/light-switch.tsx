@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { lightsContent } from "@/content/lights";
 import { setTheme, useTheme } from "@/hooks/use-theme";
 import { clickSound } from "@/lib/robot/click-sound";
-import { shieldEyes, type Robot } from "@/lib/robot/shield";
+import { flinch, type Robot } from "@/lib/robot/flinch";
 import { PendantIcon } from "./pendant-icon";
 
 /** How long the pendant swings after a pull. Matches the swing keyframes. */
@@ -32,7 +32,7 @@ function findRobot(): Robot | undefined {
 /**
  * A pendant bulb hanging from the top right of the hero, and the site's light
  * switch. Pulling it swaps the page's colours and remembers the choice. When
- * the lights come on, the robot flinches and shields its visor for a moment.
+ * the lights come on, the robot turns away from the glare for a moment.
  * Without the live robot, or under reduced motion, the colours simply swap.
  */
 export function LightSwitch() {
@@ -60,7 +60,7 @@ export function LightSwitch() {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (next === "light" && robot && !reduce) {
       const box = button.current!.getBoundingClientRect();
-      stop.current = shieldEyes(robot, {
+      stop.current = flinch(robot, {
         // Away from the bulb: down and to the far left of the page.
         away: { x: 0, y: window.innerHeight },
         back:
