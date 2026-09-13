@@ -18,7 +18,8 @@ test("content fades in on the way down and back out on the way up", async ({ pag
 
 test("the terminal clears on the way back up and types again on return", async ({ page }) => {
   await page.goto("/");
-  const lines = page.locator("#about .font-mono p");
+  // The typed lines only: an invisible copy of the script sits beside them to size the window.
+  const lines = page.locator("#about .font-mono .grid > div:not([aria-hidden]) p");
   await expect(lines).toHaveCount(1);
   await scrollTo(page, "about");
   await expect.poll(() => lines.count()).toBeGreaterThan(1);
@@ -30,7 +31,7 @@ test("the terminal clears on the way back up and types again on return", async (
 
 test("the terminal keeps its lines while any of it is still on screen", async ({ page }) => {
   await page.goto("/");
-  const lines = page.locator("#about .font-mono p");
+  const lines = page.locator("#about .font-mono .grid > div:not([aria-hidden]) p");
   await expect(lines).toHaveCount(1); // Hydrated and laid out.
   await scrollTo(page, "about");
   await expect.poll(() => lines.count()).toBeGreaterThan(3);

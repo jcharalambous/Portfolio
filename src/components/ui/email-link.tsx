@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { useHydrated } from "@/hooks/use-hydrated";
-import { emailAddress, mailto } from "@/lib/email";
+import { emailAddress, mailto } from "@/lib/email/address";
 
 type Props = {
   className?: string;

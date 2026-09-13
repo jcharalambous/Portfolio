@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { sections } from "@/content/sections";
 import { fillOffset } from "@/lib/scroll/fill-offset";
 import { itemCentres } from "@/lib/scroll/item-centres";
-import { siteConfig } from "@/lib/site";
+import { siteConfig } from "@/lib/site/config";
 import { RailItem, type RailItemState } from "./rail-item";
 import { RailProgress } from "./rail-progress";
 import { useAddressSync } from "./use-address-sync";

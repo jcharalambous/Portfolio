@@ -1,5 +1,5 @@
 import { aboutContent } from "@/content/about";
-import { siteConfig } from "@/lib/site";
+import { siteConfig } from "@/lib/site/config";
 import { SectionShell } from "../section-shell";
 import { Facts } from "./facts";
 import { LocalClock } from "./local-clock";

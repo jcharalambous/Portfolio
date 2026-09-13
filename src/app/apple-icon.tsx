@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { siteConfig } from "@/lib/site";
+import { siteConfig } from "@/lib/site/config";
 
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";

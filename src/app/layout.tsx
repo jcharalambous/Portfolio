@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { connection } from "next/server";
 import { Rail } from "@/components/nav/rail";
-import { siteConfig } from "@/lib/site";
+import { siteConfig } from "@/lib/site/config";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {

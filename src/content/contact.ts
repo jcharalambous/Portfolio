@@ -1,4 +1,4 @@
-import { siteConfig } from "@/lib/site";
+import { siteConfig } from "@/lib/site/config";
 import { heroContent } from "./hero";
 
 export type ContactLink = {

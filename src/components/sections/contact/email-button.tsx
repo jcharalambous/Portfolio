@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { ButtonLink } from "@/components/ui/button";
 import { NudgeArrow } from "@/components/ui/nudge-arrow";
 import { useHydrated } from "@/hooks/use-hydrated";
-import { emailAddress, mailto } from "@/lib/email";
+import { emailAddress, mailto } from "@/lib/email/address";
 
 type Props = {
   /** What the button says once mail is opening. */

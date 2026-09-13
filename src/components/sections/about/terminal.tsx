@@ -21,7 +21,26 @@ function Cursor() {
   );
 }
 
-/** A terminal window that types out the bio when it scrolls into view, and clears when it leaves. */
+/** One line of the script: a command on a prompt, or a block of output. */
+function Line({ entry, text, typing }: { entry: TerminalLine; text: string; typing: boolean }) {
+  return entry.kind === "command" ? (
+    <p className={prompt}>
+      {text}
+      {typing && <Cursor />}
+    </p>
+  ) : (
+    <p className={`mb-3.5 whitespace-pre-wrap ${entry.bright ? "text-ink" : "text-ink/70"}`}>
+      {text}
+    </p>
+  );
+}
+
+/**
+ * A terminal window that types out the bio when it scrolls into view, and
+ * clears when it leaves. The window is its finished size from the start: an
+ * invisible copy of the whole script sits under the typed one, so typing never
+ * moves anything below it.
+ */
 export function Terminal({ title, script }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { threshold: 0.35 });
@@ -44,30 +63,25 @@ export function Terminal({ title, script }: Props) {
         <span className="flex-1 truncate text-center">{title}</span>
         <span aria-hidden="true" className="w-13" />
       </div>
-      <div className="px-5 pt-[18px] pb-5 lg:min-h-[380px]">
-        {script.map((entry, i) => {
-          if (i > line) return null;
-          const text = i < line || done ? entry.text : entry.text.slice(0, chars);
-          const typing = i === line && !done;
-          return entry.kind === "command" ? (
-            <p key={i} className={prompt}>
-              {text}
-              {typing && <Cursor />}
+      <div className="grid px-5 pt-[18px] pb-5 [&>*]:[grid-area:1/1]">
+        <div aria-hidden="true" className="invisible">
+          {script.map((entry, i) => (
+            <Line key={i} entry={entry} text={entry.text} typing={false} />
+          ))}
+          <p className={prompt} />
+        </div>
+        <div>
+          {script.map((entry, i) => {
+            if (i > line) return null;
+            const text = i < line || done ? entry.text : entry.text.slice(0, chars);
+            return <Line key={i} entry={entry} text={text} typing={i === line && !done} />;
+          })}
+          {done && (
+            <p className={prompt}>
+              <Cursor />
             </p>
-          ) : (
-            <p
-              key={i}
-              className={`mb-3.5 whitespace-pre-wrap ${entry.bright ? "text-ink" : "text-ink/70"}`}
-            >
-              {text}
-            </p>
-          );
-        })}
-        {done && (
-          <p className={prompt}>
-            <Cursor />
-          </p>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

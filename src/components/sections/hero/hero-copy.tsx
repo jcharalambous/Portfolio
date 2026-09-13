@@ -1,7 +1,7 @@
 import { ButtonLink } from "@/components/ui/button";
 import { EmailLink } from "@/components/ui/email-link";
 import { heroContent } from "@/content/hero";
-import { siteConfig } from "@/lib/site";
+import { siteConfig } from "@/lib/site/config";
 
 // Each block fades in on load, in sequence. Under reduced motion it is a short plain fade.
 const fadeIn =

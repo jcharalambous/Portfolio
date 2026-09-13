@@ -1,5 +1,5 @@
 import { contactContent } from "@/content/contact";
-import { siteConfig } from "@/lib/site";
+import { siteConfig } from "@/lib/site/config";
 
 /** The copyright line and the credit for the hero's robot model. */
 export function SiteFooter() {
