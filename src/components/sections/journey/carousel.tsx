@@ -27,8 +27,9 @@ type Props = {
  */
 const track =
   "flex gap-4 overflow-x-auto px-[calc(50%-var(--card)/2)] py-2 [--card:min(22rem,62vw)] [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)] [scrollbar-width:none] snap-x snap-mandatory max-stack:-mx-(--gutter) stack:gap-6 stack:[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] [&::-webkit-scrollbar]:hidden";
-/* Below `stack` the arrows sit in a row under the track; beside it, they float over its faded edges. */
+/* Below `stack` the arrows sit in a row under the track; beside it, they sit in the space kept to its sides. */
 const arrows = "mt-6 flex justify-center gap-3 stack:contents";
+/* Centred on the cards, in the clear space kept either side of the track. */
 const arrow = "stack:absolute stack:top-1/2 stack:-translate-y-1/2";
 
 /** The lessons as squares on a track, and the window that opens the story behind the middle one. */
@@ -52,7 +53,7 @@ export function Carousel({ lessons, labels }: Props) {
   };
 
   return (
-    <div className="relative">
+    <div className="relative stack:px-16">
       <ul ref={trackRef} onKeyDown={onKeyDown} className={track}>
         {lessons.map((lesson, index) => (
           <LessonCard
@@ -72,14 +73,14 @@ export function Carousel({ lessons, labels }: Props) {
           label={labels.previousLabel}
           disabled={active === 0}
           onClick={() => go(active - 1)}
-          className={`${arrow} stack:-left-3`}
+          className={`${arrow} stack:left-0`}
         />
         <ArrowButton
           direction="next"
           label={labels.nextLabel}
           disabled={active === lessons.length - 1}
           onClick={() => go(active + 1)}
-          className={`${arrow} stack:-right-3`}
+          className={`${arrow} stack:right-0`}
         />
       </div>
       <LessonWindow
