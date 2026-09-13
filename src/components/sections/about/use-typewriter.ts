@@ -12,23 +12,34 @@ export type TypewriterState = {
 };
 
 type Options = {
-  /** Begin typing. Until then nothing is shown. */
+  /** Begin typing. Until then, and again once it turns off, nothing is shown. */
   start: boolean;
   /** Skip the typing and show everything (reduced motion). */
   instant: boolean;
 };
 
+/** Nothing typed yet. */
+const blank: TypewriterState = { line: 0, chars: 0, done: false };
+
 /**
  * Plays a terminal script. Server rendering shows the whole script, so the
  * text is in the HTML for readers without JavaScript and for search engines.
- * Once live in the browser it hides the lines and types them when told to start.
+ * Once live in the browser it hides the lines and types them when told to
+ * start. Turning `start` off clears the screen, so the next start types from
+ * the top again.
  */
 export function useTypewriter(
   script: readonly TerminalLine[],
   { start, instant }: Options,
 ): TypewriterState {
   const hydrated = useHydrated();
-  const [typed, setTyped] = useState<TypewriterState>({ line: 0, chars: 0, done: false });
+  const [typed, setTyped] = useState<TypewriterState>(blank);
+  // Clear whenever `start` changes, during render, so no stale frame shows first.
+  const [lastStart, setLastStart] = useState(start);
+  if (start !== lastStart) {
+    setLastStart(start);
+    setTyped(blank);
+  }
 
   useEffect(() => {
     if (!start || instant) return;

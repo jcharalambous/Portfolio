@@ -40,13 +40,13 @@ export function CopyEmailButton({ label, copiedLabel }: Props) {
     >
       <span
         aria-hidden={copied}
-        className={`block transition-[transform,opacity] duration-[450ms] ease-strong motion-reduce:transition-none ${copied ? "-translate-y-full opacity-0" : ""}`}
+        className={`block transition-[transform,opacity] duration-250 ease-strong motion-reduce:translate-y-0 motion-reduce:transition-opacity motion-reduce:duration-200 ${copied ? "-translate-y-full opacity-0" : ""}`}
       >
         {label}
       </span>
       <span
         aria-hidden={!copied}
-        className={`absolute inset-0 grid place-items-center transition-[transform,opacity] duration-[450ms] ease-strong motion-reduce:transition-none ${copied ? "" : "translate-y-full opacity-0"}`}
+        className={`absolute inset-0 grid place-items-center transition-[transform,opacity] duration-250 ease-strong motion-reduce:translate-y-0 motion-reduce:transition-opacity motion-reduce:duration-200 ${copied ? "" : "translate-y-full opacity-0"}`}
       >
         {copiedLabel}
       </span>

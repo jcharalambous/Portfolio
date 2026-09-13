@@ -2,7 +2,7 @@
   --ease-strong: cubic-bezier(0.23, 1, 0.32, 1);
 
   /* Load-in sequence. Delays are set per element. */
-  --animate-fade-in: fade-in 1s ease forwards;
+  --animate-fade-in: fade-in 1s var(--ease-strong) forwards;
   @keyframes fade-in {
     to {
       opacity: 1;
