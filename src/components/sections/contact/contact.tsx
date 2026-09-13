@@ -12,7 +12,7 @@ export function Contact() {
   return (
     <SectionShell id="contact" heading={heading} intro={intro} align="start">
       <div className="mt-2 mb-16">
-        <EmailLink className="relative inline-block min-h-[1.2em] pb-1.5 text-[clamp(18px,1.8vw,24px)] font-semibold tracking-[-0.02em] [overflow-wrap:anywhere] text-ink after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-link after:transition-transform after:duration-500 after:ease-strong after:content-[''] hover:after:scale-x-100 motion-reduce:after:transition-none" />
+        <EmailLink className="relative inline-block min-h-[1.2em] pb-1.5 text-[clamp(1.125rem,1.8vw,1.5rem)] font-semibold tracking-[-0.02em] [overflow-wrap:anywhere] text-ink transition-opacity duration-100 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-link after:transition-transform after:duration-250 after:ease-strong after:content-[''] hover:after:scale-x-100 active:opacity-60 motion-reduce:after:transition-none" />
         <div className="mt-7 flex flex-wrap items-center gap-3">
           <CopyEmailButton label={copyLabel} copiedLabel={copiedLabel} />
           {siteConfig.links.map((link) => (

@@ -34,3 +34,20 @@ test("reduced motion shows the whole script and never types", () => {
   act(() => vi.advanceTimersByTime(5000));
   expect(result.current.done).toBe(true);
 });
+
+test("stopping clears the screen, and starting again types from the top", () => {
+  const { result, rerender } = renderHook(
+    ({ start }) => useTypewriter(script, { start, instant: false }),
+    { initialProps: { start: true } },
+  );
+  act(() => vi.advanceTimersByTime(revealEnd(script)));
+  expect(result.current.done).toBe(true);
+
+  rerender({ start: false });
+  expect(result.current).toEqual({ line: 0, chars: 0, done: false });
+
+  rerender({ start: true });
+  expect(result.current).toEqual({ line: 0, chars: 0, done: false });
+  act(() => vi.advanceTimersByTime(revealEnd(script)));
+  expect(result.current.done).toBe(true);
+});

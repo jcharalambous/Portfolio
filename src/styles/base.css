@@ -1,5 +1,7 @@
 /* The site is dark only. `dark:` utilities apply whenever <html class="dark">. */
 @custom-variant dark (&:where(.dark, .dark *));
+/* Solid, frostier surfaces for readers who turn translucency off. */
+@custom-variant reduced-transparency (@media (prefers-reduced-transparency: reduce));
 
 html {
   scroll-behavior: smooth;

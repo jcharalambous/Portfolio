@@ -4,18 +4,30 @@
     system-ui, sans-serif;
   --font-mono: "SF Mono", ui-monospace, Menlo, Monaco, "JetBrains Mono", Consolas, monospace;
 
-  /* Type scale. Named after the role, not the size, so sections share them. */
-  --text-heading: clamp(36px, 4.6vw, 56px);
+  /*
+   * Type scale. Named after the role, not the size, so sections share them. Sizes are
+   * in rem so they follow the reader's text-size setting; the pixel value is noted.
+   * Large text is tracked tight and set close; small text is tracked slightly open.
+   */
+  --text-heading: clamp(2.25rem, 4.6vw, 3.5rem); /* 36px to 56px */
   --text-heading--line-height: 1.06;
   --text-heading--letter-spacing: -0.02em;
   --text-heading--font-weight: 600;
 
-  --text-kicker: 17px;
+  --text-kicker: 1.0625rem; /* 17px */
   --text-kicker--line-height: 1.19;
   --text-kicker--letter-spacing: 0.011em;
   --text-kicker--font-weight: 600;
 
-  --text-lede: 21px;
+  --text-lede: 1.3125rem; /* 21px */
   --text-lede--line-height: 1.38;
   --text-lede--letter-spacing: 0.011em;
+
+  /* Running sizes. Line height and tracking are set where they are used. */
+  --text-title: 1.3125rem; /* 21px */
+  --text-title-sm: 1.1875rem; /* 19px */
+  --text-body: 1.0625rem; /* 17px */
+  --text-body-sm: 0.9375rem; /* 15px */
+  --text-caption: 0.8125rem; /* 13px */
+  --text-micro: 0.6875rem; /* 11px */
 }

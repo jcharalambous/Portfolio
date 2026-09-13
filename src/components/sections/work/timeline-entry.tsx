@@ -27,11 +27,11 @@ export function TimelineEntry({ entry, index }: Props) {
         {from} — {current ? <b className="font-medium text-live">{to}</b> : to}
       </p>
       <h3
-        className={`leading-[1.2] font-semibold tracking-[-0.015em] ${minor ? "text-[19px]" : "text-[21px] lg:text-2xl"}`}
+        className={`leading-[1.2] font-semibold tracking-[-0.015em] ${minor ? "text-title-sm" : "text-title lg:text-2xl"}`}
       >
         {role}
         <small
-          className={`mt-0.5 block font-normal tracking-[-0.005em] text-ink-muted ${minor ? "text-[15px]" : "text-[17px]"}`}
+          className={`mt-0.5 block font-normal tracking-[-0.005em] text-ink-muted ${minor ? "text-body-sm" : "text-body"}`}
         >
           {org}
         </small>
@@ -40,7 +40,7 @@ export function TimelineEntry({ entry, index }: Props) {
         {body.map((paragraph, i) => (
           <p
             key={i}
-            className={`mb-3 max-w-[60ch] leading-[1.47] tracking-[-0.005em] text-ink-muted last:mb-0 ${minor ? "text-[15px]" : "text-[17px]"}`}
+            className={`mb-3 max-w-[60ch] leading-[1.47] tracking-[-0.005em] text-ink-muted last:mb-0 ${minor ? "text-body-sm" : "text-body"}`}
           >
             {paragraph.lead && <strong className="font-medium text-ink">{paragraph.lead}</strong>}
             {paragraph.text}

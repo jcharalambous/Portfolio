@@ -16,7 +16,7 @@ export function SiteFooter() {
           href={credit.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="underline underline-offset-[3px] transition-colors hover:text-ink"
+          className="underline underline-offset-[3px] transition-[color,opacity] hover:text-ink active:opacity-60 active:duration-100"
         >
           {credit.author}
         </a>{" "}

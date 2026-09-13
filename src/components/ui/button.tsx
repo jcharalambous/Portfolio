@@ -1,7 +1,8 @@
 import type { ComponentProps } from "react";
 
+// Colour changes ease; the press is a quick strong ease-out, and pressing is faster than letting go.
 const base =
-  "inline-flex items-center justify-center rounded-full transition-[background-color,border-color,transform] duration-200 ease-out active:scale-[0.97] active:duration-100 focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link";
+  "inline-flex items-center justify-center rounded-full [transition:background-color_200ms_ease,border-color_200ms_ease,transform_160ms_var(--ease-strong)] active:scale-[0.97] active:duration-100 focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link";
 
 const variants = {
   /** The blue pill. */
@@ -12,8 +13,8 @@ const variants = {
 };
 
 const sizes = {
-  md: "px-[22px] py-3 text-[17px] leading-[1.2] tracking-[-0.02em]",
-  sm: "px-5 py-[11px] text-[15px] leading-[1.2] tracking-[-0.01em]",
+  md: "px-[22px] py-3 text-body leading-[1.2] tracking-[-0.02em]",
+  sm: "px-5 py-[11px] text-body-sm leading-[1.2] tracking-[-0.01em]",
 };
 
 type Look = {

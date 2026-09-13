@@ -21,7 +21,7 @@ function Cursor() {
   );
 }
 
-/** A terminal window that types out the bio once it scrolls into view. */
+/** A terminal window that types out the bio when it scrolls into view, and clears when it leaves. */
 export function Terminal({ title, script }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { threshold: 0.35 });

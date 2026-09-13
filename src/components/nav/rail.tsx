@@ -22,9 +22,10 @@ function stateFor(index: number, active: number): RailItemState {
 }
 
 /**
- * Section nav. On small screens it is a bar of dots along the bottom. From the
- * `stack` breakpoint up it is a fixed rail on the left: a node per section on
- * a line that fills as the reader scrolls.
+ * Section nav. On small screens it is a bar of dots along the bottom, a translucent
+ * layer the page scrolls under. From the `stack` breakpoint up it is a fixed rail on
+ * the left: a node per section on a line that fills as the reader scrolls. It dims
+ * slowly once the reader has settled and comes back at once on any scroll.
  */
 export function Rail() {
   const [active, setActive] = useState(0);
@@ -42,14 +43,15 @@ export function Rail() {
     const list = listRef.current;
     const fill = fillRef.current;
     if (!list || !fill) return;
-    fill.style.height = `${fillOffset(itemCentres(list), index, progress)}px`;
+    const lit = fillOffset(itemCentres(list), index, progress);
+    fill.style.transform = `scaleY(${lit / (fill.offsetHeight || 1)})`;
   });
 
   return (
     <nav
       aria-label="Sections"
       data-idle={idle || undefined}
-      className="pointer-events-none fixed z-50 flex transition-opacity duration-500 ease-out focus-within:opacity-100 hover:opacity-100 hover:duration-200 data-idle:opacity-40 max-stack:inset-x-0 max-stack:bottom-0 max-stack:h-14 max-stack:items-center max-stack:justify-center max-stack:border-t max-stack:border-line-soft max-stack:bg-page/80 max-stack:backdrop-blur-md stack:inset-y-0 stack:left-0 stack:w-rail-compact stack:flex-col stack:justify-center stack:pl-[26px] wide:w-rail wide:pl-10"
+      className="pointer-events-none fixed z-50 flex transition-opacity duration-200 ease-strong focus-within:opacity-100 hover:opacity-100 data-idle:opacity-40 max-stack:inset-x-0 max-stack:bottom-0 max-stack:h-14 max-stack:items-center max-stack:justify-center max-stack:bg-page/80 max-stack:backdrop-blur-md max-stack:before:pointer-events-none max-stack:before:absolute max-stack:before:inset-x-0 max-stack:before:bottom-full max-stack:before:h-8 max-stack:before:bg-linear-to-t max-stack:before:from-page/70 max-stack:before:to-transparent max-stack:before:content-[''] contrast-more:max-stack:border-t contrast-more:max-stack:border-line contrast-more:max-stack:bg-page stack:inset-y-0 stack:left-0 stack:w-rail-compact stack:flex-col stack:justify-center stack:pl-[26px] wide:w-rail wide:pl-10 reduced-transparency:max-stack:bg-page reduced-transparency:max-stack:backdrop-blur-none data-idle:[&:not(:hover)]:duration-500"
     >
       <a
         href="#top"
