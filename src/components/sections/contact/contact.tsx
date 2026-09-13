@@ -13,7 +13,8 @@ import { SiteFooter } from "./site-footer";
  * hides the stroke's inner half and the seams where the font's contours overlap,
  * which a plain text-stroke would show. Filling in is that top copy changing colour.
  */
-const stroked = "text-transparent [-webkit-text-stroke:3px_rgba(255,255,255,0.55)]";
+const stroked =
+  "text-transparent [-webkit-text-stroke:3px_color-mix(in_oklab,var(--color-ink)_55%,transparent)]";
 const filled =
   "text-page transition-colors duration-[320ms] ease-strong [section:has([data-arm]:hover)_&]:text-ink";
 

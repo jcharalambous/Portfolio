@@ -6,7 +6,7 @@ export function SiteFooter() {
   const { credit } = contactContent;
 
   return (
-    <footer className="mt-auto flex flex-wrap justify-between gap-2 border-t border-white/[0.08] pt-5 text-xs text-ink-muted">
+    <footer className="mt-auto flex flex-wrap justify-between gap-2 border-t border-ink/8 pt-5 text-xs text-ink-muted">
       <span>
         © {new Date().getFullYear()} {siteConfig.name}
       </span>

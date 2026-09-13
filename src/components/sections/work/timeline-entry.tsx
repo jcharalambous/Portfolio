@@ -20,7 +20,7 @@ export function TimelineEntry({ entry, index }: Props) {
         className={`absolute top-2 -left-10 size-[13px] translate-x-[-50%] translate-x-[6.5px] rounded-full border-[1.5px] ${
           current
             ? "border-live bg-live shadow-[0_0_0_4px_rgba(48,209,88,0.15),0_0_16px_rgba(48,209,88,0.5)]"
-            : "border-white/55 bg-white/55"
+            : "border-ink/55 bg-ink/55"
         }`}
       />
       <p className="mb-1.5 text-xs tracking-[0.02em] text-ink-muted tabular-nums">
@@ -51,7 +51,7 @@ export function TimelineEntry({ entry, index }: Props) {
             {tags.map((tag) => (
               <li
                 key={tag}
-                className="rounded-full border border-white/[0.08] bg-white/[0.07] px-2.5 py-[5px] text-xs text-ink"
+                className="rounded-full border border-ink/8 bg-ink/7 px-2.5 py-[5px] text-xs text-ink"
               >
                 {tag}
               </li>

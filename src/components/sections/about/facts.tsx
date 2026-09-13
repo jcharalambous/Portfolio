@@ -8,7 +8,7 @@ type Props = {
 };
 
 const row =
-  "grid grid-cols-[110px_1fr] items-baseline gap-4 border-t border-white/[0.08] py-4 last:border-b";
+  "grid grid-cols-[110px_1fr] items-baseline gap-4 border-t border-ink/8 py-4 last:border-b";
 
 /** Label and value rows: status, where, current role, education, stack. */
 export function Facts({ facts, trailing }: Props) {
