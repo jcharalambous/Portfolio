@@ -23,12 +23,12 @@ const link =
 const onLine =
   "stack:absolute stack:top-1/2 stack:-left-[26px] stack:-translate-x-1/2 stack:-translate-y-1/2";
 const dot =
-  "size-[11px] rounded-full border-[1.5px] transition-[transform,background-color,border-color] duration-200 ease-strong group-hover:border-white motion-reduce:transition-[background-color,border-color]";
+  "size-[11px] rounded-full border-[1.5px] transition-[scale,background-color,border-color] duration-200 ease-strong group-hover:border-white motion-reduce:transition-[background-color,border-color]";
 const label =
-  "block text-caption leading-tight tracking-tight transition-[color,transform] duration-200 ease-strong group-hover:translate-x-[3px] group-hover:text-ink motion-reduce:transition-colors motion-reduce:transform-none max-stack:hidden max-wide:absolute max-wide:top-1/2 max-wide:left-3.5 max-wide:-translate-y-1/2 max-wide:whitespace-nowrap max-wide:opacity-0 max-wide:group-hover:translate-x-1 max-wide:group-hover:-translate-y-1/2 max-wide:group-hover:opacity-100";
+  "block text-caption leading-tight tracking-tight transition-[color,translate] duration-200 ease-strong group-hover:translate-x-[3px] group-hover:text-ink motion-reduce:transition-colors motion-reduce:transform-none max-stack:hidden max-wide:absolute max-wide:top-1/2 max-wide:left-3.5 max-wide:-translate-y-1/2 max-wide:whitespace-nowrap max-wide:opacity-0 max-wide:group-hover:translate-x-1 max-wide:group-hover:-translate-y-1/2 max-wide:group-hover:opacity-100";
 /* The meta line opens as a grid row, so the motion covers exactly its height. */
 const meta =
-  "grid transition-[grid-template-rows,opacity,transform] duration-[400ms] ease-strong motion-reduce:transition-opacity motion-reduce:duration-200 motion-reduce:translate-y-0 max-wide:hidden";
+  "grid transition-[grid-template-rows,opacity,translate] duration-[400ms] ease-strong motion-reduce:transition-opacity motion-reduce:duration-200 motion-reduce:translate-y-0 max-wide:hidden";
 const metaOpen = "grid-rows-[1fr] translate-y-0 opacity-100";
 const metaClosed = "grid-rows-[0fr] -translate-y-[3px] opacity-0";
 
