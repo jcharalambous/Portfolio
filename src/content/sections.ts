@@ -4,7 +4,7 @@ export const sections = [
   { id: "about", label: "About", meta: "How I got here" },
   { id: "work", label: "Work", meta: "Vending Sense, 2025 – present" },
   { id: "projects", label: "Projects", meta: "Unity, and what it replaced" },
-  { id: "approach", label: "Approach", meta: "Decisions and what they cost" },
+  { id: "journey", label: "Journey", meta: "Six lessons, as they happened" },
   { id: "skills", label: "Skills", meta: "Languages, frameworks, tools" },
   { id: "contact", label: "Contact", meta: "Open to senior roles" },
 ] as const;
