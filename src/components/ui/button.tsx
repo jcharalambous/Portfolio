@@ -2,11 +2,13 @@ import type { ComponentProps } from "react";
 
 // Colour changes ease; the press is a quick strong ease-out, and pressing is faster than letting go.
 const base =
-  "inline-flex items-center justify-center rounded-full [transition:background-color_200ms_ease,border-color_200ms_ease,transform_160ms_var(--ease-strong)] active:scale-[0.97] active:duration-100 focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link";
+  "inline-flex items-center justify-center rounded-full [transition:background-color_200ms_ease,border-color_200ms_ease,scale_160ms_var(--ease-strong)] active:scale-[0.97] active:duration-100 focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-link";
 
 const variants = {
   /** The blue pill. */
   primary: "bg-accent text-white hover:bg-accent-hover",
+  /** White on black, for the one button a section is built around. */
+  light: "bg-white text-black hover:bg-white/90",
   /** Quiet, for secondary actions beside a primary one. */
   ghost:
     "border border-white/[0.12] bg-white/[0.06] text-ink hover:border-white/[0.22] hover:bg-white/10",

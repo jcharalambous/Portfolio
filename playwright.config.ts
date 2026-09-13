@@ -6,6 +6,9 @@ const port = 3100;
 export default defineConfig({
   testDir: "e2e",
   fullyParallel: true,
+  // Each desktop worker is a full Chromium drawing WebGL in software. More than three
+  // on a laptop starve each other, and the timing-based tests start failing for no reason.
+  workers: process.env.CI ? undefined : 3,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   reporter: process.env.CI ? "github" : "list",

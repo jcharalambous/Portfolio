@@ -1,33 +1,61 @@
-import { ButtonLink } from "@/components/ui/button";
-import { EmailLink } from "@/components/ui/email-link";
+import { Reveal } from "@/components/ui/reveal";
 import { contactContent } from "@/content/contact";
-import { siteConfig } from "@/lib/site";
 import { SectionShell } from "../section-shell";
 import { CopyEmailButton } from "./copy-email-button";
+import { EmailButton } from "./email-button";
+import { Glow } from "./glow";
+import { LinkButton } from "./link-button";
 import { SiteFooter } from "./site-footer";
 
+/*
+ * The second line is an outline until the pointer reaches the email button, which
+ * fills it in. A stroked copy sits under a copy filled in the page colour: the fill
+ * hides the stroke's inner half and the seams where the font's contours overlap,
+ * which a plain text-stroke would show. Filling in is that top copy changing colour.
+ */
+const stroked = "text-transparent [-webkit-text-stroke:3px_rgba(255,255,255,0.55)]";
+const filled =
+  "text-page transition-colors duration-[320ms] ease-strong [section:has([data-arm]:hover)_&]:text-ink";
+
+/** The finale: a display headline, the address as a button, the links, and where I stand. */
 export function Contact() {
-  const { heading, intro, copyLabel, copiedLabel } = contactContent;
+  const { headline, intro, openingLabel, copyLabel, copiedLabel, links } = contactContent;
 
   return (
-    <SectionShell id="contact" heading={heading} intro={intro} align="start">
-      <div className="mt-2 mb-16">
-        <EmailLink className="relative inline-block min-h-[1.2em] pb-1.5 text-[clamp(1.125rem,1.8vw,1.5rem)] font-semibold tracking-[-0.02em] [overflow-wrap:anywhere] text-ink transition-opacity duration-100 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-link after:transition-transform after:duration-250 after:ease-strong after:content-[''] hover:after:scale-x-100 active:opacity-60 motion-reduce:after:transition-none" />
-        <div className="mt-7 flex flex-wrap items-center gap-3">
+    <SectionShell
+      id="contact"
+      align="start"
+      size="display"
+      intro={intro}
+      heading={
+        <>
+          <Reveal as="span" className="block">
+            {headline.lead}
+          </Reveal>
+          <Reveal as="span" delay={60} className="block">
+            <span className="grid [&>span]:[grid-area:1/1]">
+              <span aria-hidden="true" className={stroked}>
+                {headline.outline}
+              </span>
+              <span className={filled}>{headline.outline}</span>
+            </span>
+          </Reveal>
+        </>
+      }
+    >
+      <Glow />
+      <div className="flex flex-wrap items-center gap-3.5">
+        <Reveal delay={120}>
+          <EmailButton openingLabel={openingLabel} />
+        </Reveal>
+        <Reveal delay={180}>
           <CopyEmailButton label={copyLabel} copiedLabel={copiedLabel} />
-          {siteConfig.links.map((link) => (
-            <ButtonLink
-              key={link.href}
-              href={link.href}
-              variant="ghost"
-              size="sm"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {link.label} ↗
-            </ButtonLink>
-          ))}
-        </div>
+        </Reveal>
+        {links.map((link, index) => (
+          <Reveal key={link.href} delay={index === 0 ? 240 : 300}>
+            <LinkButton link={link} />
+          </Reveal>
+        ))}
       </div>
       <SiteFooter />
     </SectionShell>

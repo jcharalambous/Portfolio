@@ -1,5 +1,8 @@
 @theme {
+  /* Entrances, exits and hover: starts fast. */
   --ease-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  /* Something already on screen moving from A to B. */
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 
   /* Load-in sequence. Delays are set per element. */
   --animate-fade-in: fade-in 1s var(--ease-strong) forwards;
@@ -36,6 +39,58 @@
     to {
       opacity: 0;
       transform: scale(3.2);
+    }
+  }
+}
+
+@theme {
+  /* The tick beside "Copied" draws itself. */
+  --animate-draw: draw 300ms var(--ease-strong) forwards;
+  @keyframes draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  /*
+   * The paper plane on the email button: a small wind-up to the left, a beat,
+   * then straight out the right. Percentages are of the button's width.
+   */
+  --animate-fly: fly 1.4s var(--ease-in-out) forwards;
+  @keyframes fly {
+    0% {
+      opacity: 0;
+      transform: translateX(0) scale(0.7);
+    }
+    10% {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+    45%,
+    55% {
+      opacity: 1;
+      transform: translateX(-42%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(115%) scale(1.1, 0.95);
+    }
+  }
+  /* The streak behind it, only once it accelerates out. */
+  --animate-trail: trail 1.4s var(--ease-in-out) forwards;
+  @keyframes trail {
+    0%,
+    58% {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    75% {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scaleX(0.4);
     }
   }
 }
