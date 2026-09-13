@@ -7,11 +7,10 @@ const base =
 const variants = {
   /** The blue pill. */
   primary: "bg-accent text-white hover:bg-accent-hover",
-  /** White on black, for the one button a section is built around. */
-  light: "bg-white text-black hover:bg-white/90",
+  /** Ink on page, reversed: for the one button a section is built around. */
+  contrast: "bg-ink text-page hover:bg-ink/90",
   /** Quiet, for secondary actions beside a primary one. */
-  ghost:
-    "border border-white/[0.12] bg-white/[0.06] text-ink hover:border-white/[0.22] hover:bg-white/10",
+  ghost: "border border-ink/12 bg-ink/6 text-ink hover:border-ink/22 hover:bg-ink/10",
 };
 
 const sizes = {

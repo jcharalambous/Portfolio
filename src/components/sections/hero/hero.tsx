@@ -1,6 +1,7 @@
 import { heroContent } from "@/content/hero";
 import { HeroCopy } from "./hero-copy";
 import { HeroStage } from "./hero-stage";
+import { LightSwitch } from "./light-switch";
 
 /**
  * Full-viewport opener. Positions its parts; each part is its own component.
@@ -16,6 +17,7 @@ export function Hero() {
         poster={heroContent.scene.poster}
       />
       <HeroCopy />
+      <LightSwitch />
     </section>
   );
 }

@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useTheme } from "@/hooks/use-theme";
+import { PAGE_COLOUR } from "@/lib/theme/theme";
 
 // The viewer is served from our own public folder, so the site never depends on Spline's servers.
 export const VIEWER_SRC = "/spline/viewer/spline-viewer.js";
@@ -53,6 +55,8 @@ type Props = {
 /** The live 3D robot. Fills its box, reacts to the pointer anywhere on the page, and rests while scrolled away. */
 export function SplineScene({ src, className }: Props) {
   const ref = useRef<SplineViewerElement>(null);
+  // The viewer paints its own background, so it follows the theme by attribute.
+  const theme = useTheme();
 
   useEffect(loadViewerOnce, []);
   useEffect(() => {
@@ -67,7 +71,7 @@ export function SplineScene({ src, className }: Props) {
         ref={ref}
         url={src}
         events-target="global"
-        background="#000000"
+        background={PAGE_COLOUR[theme]}
         className="block h-full w-full"
       />
     </div>

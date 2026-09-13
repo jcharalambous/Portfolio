@@ -23,7 +23,7 @@ export function Timeline({ entries }: Props) {
       <div
         ref={line}
         aria-hidden="true"
-        className="absolute top-2.5 left-1.5 h-full w-px origin-top scale-y-0 bg-linear-to-b from-white to-white/35"
+        className="absolute top-2.5 left-1.5 h-full w-px origin-top scale-y-0 bg-linear-to-b from-ink to-ink/35"
       />
       {entries.map((entry, index) => (
         <TimelineEntry key={`${entry.org}-${entry.from}`} entry={entry} index={index} />

@@ -10,13 +10,13 @@ type Props = {
   script: readonly TerminalLine[];
 };
 
-const prompt = "text-ink before:text-prompt before:content-['$_']";
+const prompt = "text-window-ink before:text-prompt before:content-['$_']";
 
 function Cursor() {
   return (
     <span
       aria-hidden="true"
-      className="ml-0.5 inline-block h-[1.1em] w-2 translate-y-0.5 animate-blink bg-ink motion-reduce:animate-none"
+      className="ml-0.5 inline-block h-[1.1em] w-2 translate-y-0.5 animate-blink bg-window-ink motion-reduce:animate-none"
     />
   );
 }
@@ -29,7 +29,9 @@ function Line({ entry, text, typing }: { entry: TerminalLine; text: string; typi
       {typing && <Cursor />}
     </p>
   ) : (
-    <p className={`mb-3.5 whitespace-pre-wrap ${entry.bright ? "text-ink" : "text-ink/70"}`}>
+    <p
+      className={`mb-3.5 whitespace-pre-wrap ${entry.bright ? "text-window-ink" : "text-window-ink/70"}`}
+    >
       {text}
     </p>
   );
@@ -54,9 +56,9 @@ export function Terminal({ title, script }: Props) {
   return (
     <div
       ref={ref}
-      className="overflow-hidden rounded-[18px] border border-white/[0.09] bg-white/[0.035] font-mono text-sm leading-[1.65] shadow-[0_30px_80px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.06)]"
+      className="overflow-hidden rounded-[18px] border border-window-line bg-window font-mono text-sm leading-[1.65] text-window-ink shadow-[0_30px_80px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.06)]"
     >
-      <div className="flex h-10 items-center gap-2 border-b border-white/[0.07] bg-white/[0.04] px-3.5 text-xs text-ink-muted">
+      <div className="flex h-10 items-center gap-2 border-b border-window-line bg-window-ink/4 px-3.5 text-xs text-window-ink/60">
         <span aria-hidden="true" className="size-3 rounded-full bg-traffic-red" />
         <span aria-hidden="true" className="size-3 rounded-full bg-traffic-amber" />
         <span aria-hidden="true" className="size-3 rounded-full bg-traffic-green" />

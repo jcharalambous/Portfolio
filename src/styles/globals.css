@@ -6,4 +6,5 @@
 @import "./tokens/motion.css";
 @import "./tokens/layout.css";
 
+@import "./light.css";
 @import "./base.css";

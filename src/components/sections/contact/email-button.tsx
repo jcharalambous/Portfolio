@@ -52,7 +52,7 @@ export function EmailButton({ openingLabel }: Props) {
 
   return (
     <ButtonLink
-      variant="light"
+      variant="contrast"
       href={hydrated ? mailto() : undefined}
       data-arm=""
       onClick={(event) => {
@@ -103,7 +103,7 @@ function Plane({ flying }: { flying: boolean }) {
         />
         <svg
           viewBox="0 0 24 24"
-          className="size-[26px] fill-white stroke-black/70"
+          className="size-[26px] fill-page stroke-ink/70"
           strokeWidth="1.6"
           strokeLinejoin="round"
           strokeLinecap="round"

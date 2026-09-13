@@ -1,10 +1,16 @@
-/* The site is dark only. `dark:` utilities apply whenever <html class="dark">. */
-@custom-variant dark (&:where(.dark, .dark *));
+/*
+ * Two themes, chosen by the attribute the layout sets from the visitor's
+ * cookie. Dark is the default and lives in tokens/colors.css; light re-points
+ * the same tokens in light.css.
+ */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
 /* Solid, frostier surfaces for readers who turn translucency off. */
 @custom-variant reduced-transparency (@media (prefers-reduced-transparency: reduce));
 
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -18,4 +24,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  /* A theme change fades the page rather than snapping it. */
+  transition:
+    background-color 150ms var(--ease-strong),
+    color 150ms var(--ease-strong);
 }

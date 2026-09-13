@@ -8,8 +8,10 @@ export type ParticleHeadlineOptions = {
   /** Element the canvas fills. Its pointer events drive the field, and its left padding is the gutter. */
   host: HTMLElement;
   lines: string[];
-  /** Skip the fly-in and start at rest (reduced motion). */
+  /** Skip the fly-in and start at rest (reduced motion, or a re-colour). */
   settleImmediately?: boolean;
+  /** Draw in dark ink, for a light page. */
+  onLight?: boolean;
   /** Called once, the first time the headline has fully formed. */
   onSettled?: () => void;
 };
@@ -29,6 +31,7 @@ export function mountParticleHeadline({
   host,
   lines,
   settleImmediately = false,
+  onLight = false,
   onSettled,
 }: ParticleHeadlineOptions): () => void {
   const ctx = canvas.getContext("2d");
@@ -85,7 +88,7 @@ export function mountParticleHeadline({
     pointer.y += (target.y - pointer.y) * PHYSICS.pointerLag;
     burst *= PHYSICS.burstDecay;
     const fastest = stepParticles(particles, pointer, burst);
-    drawParticles(ctx!, particles, width, height);
+    drawParticles(ctx!, particles, width, height, onLight);
 
     // Once the field has settled and nothing is pushing it, stop drawing until something changes.
     const pointerAway = target.x === OFFSCREEN.x;

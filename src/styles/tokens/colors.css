@@ -1,4 +1,4 @@
-/* Colour. Names follow the design tokens: page, ink, ink-muted (text-2), link, line. */
+/* Colour, dark theme. Names follow the design tokens: page, ink, ink-muted (text-2), link, line. The light theme re-points these in ../light.css. */
 @theme {
   --color-page: #000;
   --color-page-soft: #0b0b0d;
@@ -10,6 +10,11 @@
   --color-accent-hover: #0077ed;
   --color-line: rgba(255, 255, 255, 0.12);
   --color-line-soft: rgba(255, 255, 255, 0.06);
+
+  /* The terminal window keeps these whatever the theme, as a window would. */
+  --color-window: #0b0b0d;
+  --color-window-ink: #f5f5f7;
+  --color-window-line: rgba(255, 255, 255, 0.09);
 
   /* Signals. */
   --color-live: #30d158;

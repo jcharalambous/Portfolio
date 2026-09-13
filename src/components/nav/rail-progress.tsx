@@ -14,7 +14,7 @@ export function RailProgress({ ref }: Props) {
       <div
         ref={ref}
         aria-hidden="true"
-        className="absolute inset-y-2 left-0 w-px origin-top scale-y-0 bg-linear-to-b from-white/35 to-white shadow-[0_0_12px_rgba(255,255,255,0.35)] max-stack:hidden"
+        className="absolute inset-y-2 left-0 w-px origin-top scale-y-0 bg-linear-to-b from-ink/35 to-ink shadow-[0_0_12px] shadow-ink/35 max-stack:hidden"
       />
     </>
   );
