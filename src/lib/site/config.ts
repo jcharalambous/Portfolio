@@ -9,12 +9,15 @@ function resolveSiteUrl() {
   return "http://localhost:3000";
 }
 
-// Who the site is about. Section copy lives in src/content/; the email address lives in src/lib/email.ts.
+// Who the site is about. Section copy lives in src/content/; the email address lives in src/lib/email/address.ts.
 export const siteConfig = {
   name: "John Charalambous",
   role: "Software Engineer",
   description:
     "Software engineer. I build things for the web, and the infrastructure that keeps them running.",
+  /** Where I am, for search engines and the time on the page. */
+  region: "Hertfordshire",
+  country: "GB",
   timeZone: "Europe/London",
   url: resolveSiteUrl(),
   links: [

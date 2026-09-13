@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { expect, test } from "vitest";
-import { siteConfig } from "@/lib/site";
+import { siteConfig } from "@/lib/site/config";
 import { HeroCopy } from "./hero-copy";
 
 test("shows the role, the two calls to action, and every contact link", () => {

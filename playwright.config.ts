@@ -12,6 +12,9 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   reporter: process.env.CI ? "github" : "list",
+  // Each desktop page parses the 3D scene on its main thread for about two seconds, so
+  // under a software GPU a transition or scroll can land later than the default five.
+  expect: { timeout: 10_000 },
   use: {
     baseURL: `http://localhost:${port}`,
     trace: "on-first-retry",

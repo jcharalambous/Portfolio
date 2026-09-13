@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { emailAddress } from "@/lib/email";
+import { emailAddress } from "@/lib/email/address";
 
 type Props = {
   label: string;

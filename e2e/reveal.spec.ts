@@ -5,6 +5,10 @@ const scrollTo = (page: Page, id: string) =>
     window.scrollTo({ top: document.getElementById(id)!.offsetTop + 10, behavior: "instant" });
   }, id);
 
+/** Styles applied and the sections at full height, so nothing below the fold counts as on screen. */
+const laidOut = (page: Page) =>
+  page.waitForFunction(() => document.documentElement.scrollHeight > window.innerHeight * 3);
+
 test("content fades in on the way down and back out on the way up", async ({ page }) => {
   await page.goto("/");
   // The wrapper around the first skill group: heading → group → wrapper.
@@ -18,7 +22,9 @@ test("content fades in on the way down and back out on the way up", async ({ pag
 
 test("the terminal clears on the way back up and types again on return", async ({ page }) => {
   await page.goto("/");
-  const lines = page.locator("#about .font-mono p");
+  await laidOut(page);
+  // The typed lines only: an invisible copy of the script sits beside them to size the window.
+  const lines = page.locator("#about .font-mono .grid > div:not([aria-hidden]) p");
   await expect(lines).toHaveCount(1);
   await scrollTo(page, "about");
   await expect.poll(() => lines.count()).toBeGreaterThan(1);
@@ -30,8 +36,9 @@ test("the terminal clears on the way back up and types again on return", async (
 
 test("the terminal keeps its lines while any of it is still on screen", async ({ page }) => {
   await page.goto("/");
-  const lines = page.locator("#about .font-mono p");
-  await expect(lines).toHaveCount(1); // Hydrated and laid out.
+  const lines = page.locator("#about .font-mono .grid > div:not([aria-hidden]) p");
+  await laidOut(page);
+  await expect(lines).toHaveCount(1);
   await scrollTo(page, "about");
   await expect.poll(() => lines.count()).toBeGreaterThan(3);
   // Read on until only the bottom of the terminal shows, as a reader finishing it would.

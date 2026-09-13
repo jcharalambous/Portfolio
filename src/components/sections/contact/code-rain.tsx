@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { glyph, seedColumns, stepColumns } from "@/lib/code-rain";
+import { glyph, seedColumns, stepColumns } from "@/lib/code-rain/columns";
 
 /** Glyph size and column pitch, in px. */
 const CELL = 11;

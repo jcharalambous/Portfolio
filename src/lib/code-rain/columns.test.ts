@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { GLYPHS, glyph, seedColumns, stepColumns } from "./code-rain";
+import { GLYPHS, glyph, seedColumns, stepColumns } from "./columns";
 
 test("seeds one column per cell, each starting above the top", () => {
   const columns = seedColumns(100, 11, () => 0.5);
